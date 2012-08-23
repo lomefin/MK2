@@ -1,0 +1,13 @@
+﻿{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Operación pronta a llevarse a cabo</h1>
+<h2>{{action}}</h2>
+<p>Si está de acuerdo con realizar la operación, haga click en Ok, en caso contrario presione Cancelar</p>
+<p><strong>Atención:</strong> Estas operaciones <em>no pueden deshacerse una vez hechas</em>.</p>
+<form method="post">
+<input type="submit" value="OK" />
+<a href="/admin/scripts" >Cancelar</a>
+</form>
+{% endblock content %}
+

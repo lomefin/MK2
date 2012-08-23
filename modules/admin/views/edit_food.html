@@ -1,0 +1,76 @@
+﻿{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Editar Elemento Alimenticio</h1>
+<p>ATENCION: Solamente se puede editar el grupo</p>
+
+<form method="post" action="">
+	<h2>Datos del Alimento</h2>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Nombre:</th>
+				<td colspan="3">
+					<input type="text" name="name" value="{{food.name}}"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Unidad:</th>
+				<td colspan="3">
+					<input type="text" name="unit" value="{{food.unit}}"/>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th colspan="4">Aporte de Macronutrientes</th>
+			</tr>
+			<tr>
+				<th>Proteinas</th>
+				<td ><input type="text" name="protein_calories" value="{{food.protein_calories}}" /></td>
+				<td colspan="2">(calor&iacute;as por unidad)</td>
+			</tr>
+			<tr>
+				<th>Grasas</th>
+				<td><input type="text" name="fat_calories" value="{{food.fat_calories}}"/></td>
+				<td colspan="2">(calor&iacute;as por unidad)</td>
+			</tr>
+			<tr>
+				<th>Carbohidratos</th>
+				<td><input type="text" name="carb_calories" value="{{food.carb_calories}}"/></td>
+				<td colspan="2">(calor&iacute;as por unidad)</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr><th colspan="4">Disponibilidad Horaria</th></tr>
+			<tr>
+				<td><input type="checkbox" name="serves_breakfast" {% if food.serves_breakfast %}checked="checked"{%endif%} /><label for="serves_breakfast">Desayuno</label></td>
+				<td><input type="checkbox" name="serves_lunch" {% if food.serves_lunch %}checked="checked"{%endif%} />Almuerzo</td>
+				<td><input type="checkbox" name="serves_dinner" {% if food.serves_dinner %}checked="checked"{%endif%} />Once/Cena</td>
+				<td><input type="checkbox" name="serves_snack" {% if food.serves_snack %}checked="checked"{%endif%} />Colaci&oacute;n</td>
+			</tr>
+			<tr>
+				<th>Grupo Alimenticio</th>
+				<td colspan="3">
+					<select name="food_group">
+						{% for i in range1to7 %}
+							<option value="{{i}}" {% ifequal food.group  i %}selected="selected"{% endifequal %}>Grupo {{i}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<input type="submit" value="Crear" />
+				</td>
+			</tr>
+		</tfoot>
+		
+	</table>
+	
+	
+</form>
+
+
+{% endblock content %}
+

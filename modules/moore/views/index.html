@@ -1,0 +1,100 @@
+{% extends "../../../templates/main_template.html" %}
+
+
+{% block css_requires %}
+	
+{% endblock %}
+{% block js_requires %}
+	<script type="text/javascript" src="/js/tutorial.js"></script>
+{% endblock js_requires %}
+{% block js_activities %}
+<script type="text/javascript" >
+	window.addEvent('domready',function(){
+		   var accordion =  new Fx.Accordion($('accordion'), '#accordion h2', '#accordion .content',{display:-1});
+		   var t = new Tutorial();
+		    accordion.addEvent('active',
+		      function(toggler,el)
+		      {
+			var f = function()
+			{
+			  t.showDialog(
+			    {message:el.getElement('.hiddenMessage').get('text')}
+			  );
+			};
+			f.delay(9000);
+		      });
+
+		});
+</script>
+{% endblock %}
+{% block content %}
+<div>
+<h2 >¡Ya están tus resultados de tu encuesta!</h2>
+<p>Las respuestas de la encuesta que realizaste, muestran que en general tus
+prácticas de autocuidado para tu nutrición son:</p>
+<p><strong>
+{%ifequal moore.item42 1%}Malas{%endifequal%}
+{%ifequal moore.item42 2%}Regulares{%endifequal%}
+{%ifequal moore.item42 3%}Buenas{%endifequal%}
+</strong></p>
+<div id="accordion">
+  
+  <h2>Conocimiento</h2>
+  
+  <div class="content">
+    <p>Las prácticas de lo que tú sabes o buscas saber son <em>
+      {%ifequal moore.item12 1%}Malas{%endifequal%}
+      {%ifequal moore.item12 2%}Regulares{%endifequal%}
+      {%ifequal moore.item12 3%}Buenas{%endifequal%}
+    </em></p>
+    <p class="hiddenMessage" style="visibility:hidden">
+      {%ifequal moore.item12 1%}Es necesario que aprendas si quieres mejorar tus prácticas.{%endifequal%}
+      {%ifequal moore.item12 2%}Debes preocuparte de aprender más{%endifequal%}
+      {%ifequal moore.item12 3%}Felicitaciones{%endifequal%}
+    </p>
+  </div>
+  
+  <h2>Intenciones</h2>
+  
+  <div class="content">
+    <p>Las prácticas de lo que tú piensas hacer son 
+      <em>
+      {%ifequal moore.item13 1%}Malas{%endifequal%}
+      {%ifequal moore.item13 2%}Regulares{%endifequal%}
+      {%ifequal moore.item13 3%}Buenas{%endifequal%}
+      </em>
+    </p>
+    <p class="hiddenMessage" style="visibility:hidden">
+      {%ifequal moore.item13 1%}Piensa en cómo puedes mejorar tus prácticas ¡Tu puedes!{%endifequal%}
+      {%ifequal moore.item13 2%}Piensa en cómo puedes mejorar tus prácticas ¡Tu puedes!{%endifequal%}
+      {%ifequal moore.item13 3%}¡Felicitaciones!{%endifequal%}
+    </p>
+  </div>
+  
+  <h2>Acciones</h2>
+  
+  <div class="content">
+    <p>Las prácticas de lo que tu haces son 
+      <em>
+	{%ifequal moore.item17 1%}Malas{%endifequal%}
+	{%ifequal moore.item17 2%}Regulares{%endifequal%}
+	{%ifequal moore.item17 3%}Buenas{%endifequal%}
+      </em></p>
+      <p class="hiddenMessage" style="visibility:hidden">
+      {%ifequal moore.item17 1%}Te recomiendo que mejores lo que haces{%endifequal%}
+      {%ifequal moore.item17 2%}Puedes mejorar lo que haces ¡Tu puedes!{%endifequal%}
+      {%ifequal moore.item17 3%}¡Felicitaciones!{%endifequal%}
+    </p>
+  </div>
+</div>
+<script type="text/javascript">
+	function giveFeedback()
+	{
+		
+	}
+</script>
+</div>
+
+
+
+{% endblock content %}

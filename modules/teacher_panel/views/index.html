@@ -1,0 +1,52 @@
+﻿{% extends "../../../templates/teacher_template.html" %}
+{% block content %}
+
+<h1>Bienvenido, {{teacher.user.name}}</h1>
+<p>Tu colegio actual es {{teacher.school.name}}
+<p>Elige alguna opción del menú superior </p>
+{%for cp in class_performances%}
+
+<h1>Rendimiento de esta semana ({{cp.class.name}})</h1>
+<h2 style="margin: 10px auto">{{cp.score|floatformat}}</h2>
+<h3>En detalle</h3>
+<table>
+  <tr>
+    <th>Actividad</th>
+    <th>Observado</th>
+    <th>Esperado</th>
+  </tr>
+  <tr>
+    <th>Accesos</th>
+    <td>{{cp.logins}}</td>
+    <td>{{cp.expected_logins}}</td>
+  </tr>
+  <tr>
+    <th>Trivias</th>
+    <td>{{cp.trivias}}</td>
+    <td>{{cp.expected_trivias}}</td>
+  </tr>
+  <tr>
+    <th>Que comí?</th>
+    <td>{{cp.food_logs}}</td>
+    <td>{{cp.expected_logins}}</td>
+  </tr>
+  <tr>
+    <th>Compromisos</th>
+    <td>{{cp.todos}}</td>
+    <td>{{cp.expected_logins}}</td>
+  </tr>
+</table>
+{%endfor%}
+<h1>Avisos recientes</h1>
+<div id="newsContainer">
+{% if news %}
+{% for n in news %}
+<p>{{n.message}}</p>
+{%endfor%}
+{% else %}
+<p>No hay avisos aún</p>
+{%endif%}
+<p>Recuerda visitar el blog mekuido para más información. <a href="http://blog.mekuido.info">http://blog.mekuido.info</a></p>
+</div>
+{% endblock content %}
+

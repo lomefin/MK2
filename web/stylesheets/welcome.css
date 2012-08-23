@@ -1,0 +1,16 @@
+
+.mainContainer
+{
+	font-family: "myriad-pro-1","myriad-pro-2", Verdana;
+	font-size: 12pt;
+	
+}
+
+.mainContainer h1
+{
+	text-align: center;
+	font-size: 40pt ;
+	color: blue;
+	font-family: "salsbury-1","salsbury-2" ;
+	
+}

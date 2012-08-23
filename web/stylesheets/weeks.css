@@ -1,0 +1,22 @@
+.weekContainer 
+{
+	border: 1px solid black;
+	width: 800px;
+	margin: 10px auto;
+}
+.inactive{display: none;}
+.active{display: block;}
+
+.weekSpan
+{
+	background-color: blue;
+	color: white;
+	font-weight: bold;
+	text-align:center;
+	font-size: 14pt;
+}
+.weekMode span
+{
+	cursor: pointer;
+}
+.weekMode li {display: inline;}

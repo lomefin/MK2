@@ -1,0 +1,190 @@
+﻿{% extends "../../../templates/main_template.html" %}
+{% block css_requires %}
+<link type="text/css" href="/css/foodLog.css" rel="stylesheet" media="screen" />
+<link href="/css/tabs.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+		* { margin:0; padding:0; }
+				
+		/* tabs structure */
+		/*.tab-container	{ width:320px; background:#eee; padding:5px 10px; }*/
+		/*ul.tabs			{ list-style-type:none; margin:0; padding:0; }*/
+		/*	ul.tabs li		{ float:left; margin:10px 5px 0 0; }*/
+		/*	ul.tabs li a	{ padding:5px 10px; border:1px solid #ddd; font-weight:bold; background:url(tab-sprite.jpg) 0 0 repeat-x; color:#000; text-decoration:none; }*/
+		/*	ul.tabs li a.active	{ background-color:#028433; color:#fff; }
+		/*		ul.tabs li a.active:hover	{ text-decoration:none; cursor:default; }
+		/*	ul.tabs li:hover	{ text-decoration:underline; }*/
+		
+
+				/* ie fixes ... lame */
+				* html ul.tabs-content li { float:left; } /* ie6 */
+				*+ html ul.tabs-content li { width:99%; float:left; } /* ie7 */
+		.clear { clear:both; }		
+	
+	</style>
+{% endblock %}
+
+{% block js_requires %}
+
+{% endblock %}
+{% block js_activities %}
+<script type="text/javascript">
+	/* class */
+	var TabSet = new Class({
+		options: {
+			activeClass: 'active', //css class
+			cookieName: '',
+			cookieOptions: {
+				duration: 30, //30 days
+				path: '/'
+			},
+			startIndex: 0 //start with this item if no cookie or active
+		},
+		Implements: [Options,Events],
+		initialize: function(tabs,contents,options) {
+			//handle arguments
+			this.setOptions(options);
+			this.tabs = $$(tabs);
+			this.contents = $$(contents);
+			//determine the "active" tab
+			var active = (Cookie.read(this.options.cookieName) || this.options.startIndex);
+			this.activeTab = this.tabs[active].addClass(this.options.activeClass);
+			this.activeContent = this.contents[active].setStyle('height','auto');
+			//process each tab and content
+			this.tabs.each(function(tab,i) {
+				this.processItem(tab,this.contents[i],i);
+			},this);
+			//tabs are ready -- load it!
+			this.fireEvent('load');
+		},
+		processItem:function(tab,content,i) {
+			var contentHeight = content.getScrollSize().y;
+			//add a click event to the tab
+			tab.addEvent('click',function(e) {
+				//stop!
+				if(e) e.stop();
+				//if it's not the active tab
+				if(tab != this.activeTab) {
+					//remove the active class from the active tab
+					this.activeTab.removeClass(this.options.activeClass);
+					//make the clicked tab the active tab
+					(this.activeTab = tab).addClass(this.options.activeClass);
+					//tween the old tab content up
+					//tween the new content down
+					this.activeContent.set('tween',{
+						onComplete:function() {
+							this.activeContent = content.fade('in').set('tween',{ onComplete: $empty }).tween('height',contentHeight);
+							//fire the tab change event
+							this.fireEvent('change',[tab,content]);
+						}.bind(this)
+					}).setStyles({
+						height: contentHeight,
+						overflow: 'hidden'
+					}).fade('out').tween('height',0);
+					//save the index to cookie
+					if(this.options.cookieName) Cookie.write(this.options.cookieName,i,this.options.cookieOptions);
+				}
+			}.bind(this));
+		}
+	});
+	
+	
+	
+	function modify(el)
+	{
+		var regex_id = /(up|down)_(\d*)(\D*)/;
+		var match = regex_id.exec(el.id);
+		if(!match) return;
+		
+		var id = match[2]+match[3];
+		
+		var food_amount_textbox = document.getElementById('food_amount_of_'+id);
+		var value = parseInt(food_amount_textbox.value);
+		if(match[1] == "up")
+			value = value+1;
+		else
+			value = value - 1;
+		if(value < 0) value = 0;
+		
+		
+		food_amount_textbox.value = value;
+		
+	}
+	function hideAllAndShow(name)
+	{
+		
+		var lis = document.getElementsByClassName('liElements');
+		var titles = document.getElementById('tabs1').getElementsByTagName('li');
+		for(var i =0; i < lis.length; i++)
+		{
+			lis[i].style.display = "none";
+		}
+		for(var i =0; i < titles.length; i++)
+		{
+			titles[i].className = "";
+		}
+		var li = document.getElementById(name);
+		li.style.display = "block";
+		
+		var title = document.getElementById('tab'+name);
+		title.className = "active";
+		
+		
+	}
+</script>	
+{% endblock %}
+{% block content %}
+
+<h1>¿Qué comiste ayer?</h1>
+<p>Ingresa lo que comiste en el día de ayer</p>
+<form action="" method="post">
+<div id="tabs" class="tab-container">
+	<ul id="tabs1" class="tabs"> 
+		
+{% for food_time in food_times %}
+	
+        <li title="{{food_time.name}}" id="tab{{food_time.name}}" ><a href="#" onclick="hideAllAndShow('{{food_time.name}}')">{{food_time.name}}</a></li> 
+        
+{% endfor %}
+	</ul> 
+	<div class="clear" style="margin:0px;">
+	</div>
+	<ul id="contents1" class="tabs-content" style="margin:0px; height: 300px;">
+		<li id="inicio" class="liElements" style="height: 300px;display: block;">
+			Haz clic en cada una de las pestañas superiores y elige la cantidad de alimentos que consumiste durante cada comida ¡trata de recordar la mayor cantidad de alimentos! Si hay algo que falte, no olvides agregarlo en la parte de abajo!
+		</li>
+{% for food_time in food_times %}
+		
+		<li id="{{food_time.name}}" class="liElements" style="height: 300px; display:none;">
+			<div class="foodList">
+				<table border="0" cellspacing="2" cellpadding="0" width="450px">
+					<tbody>
+						{% for food_item in food_time.food_list %}
+						
+						<tr >
+							<td width="250px">{{ food_item.name }}</td>
+							<td style="padding: 0px;" width="100px">
+								<div>
+									<span class="updown" id="down_{{food_item.key.id}}_{{food_time.name}}" onclick="modify(this)"><img src="/img/down.png" /></span>
+									<input type="text" name="{{ food_item.key.id }}" id="food_amount_of_{{ food_item.key.id }}_{{food_time.name}}" value="0" readonly="readonly" />
+									<span class="updown" id="up_{{food_item.key.id}}_{{food_time.name}}" onclick="modify(this)"><img src="/img/up.png" /></span>
+								</div>
+							</td>
+							<td>({{food_item.unit}})</td>
+							
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</li>
+	
+	
+{% endfor %}
+	</ul>
+</div>
+<p>¿Comiste algo que no está en la lista? ¡Ayudanos y escribe sus nombres aquí</p>
+<input type="text" name="missing_food" />
+<input type="submit" value="Listo" />
+</form>
+
+{% endblock content %}

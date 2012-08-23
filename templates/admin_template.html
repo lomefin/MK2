@@ -1,0 +1,122 @@
+<!DOCTYPE html >
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<!--Custom CSS Requirements-->
+	{% block css_requires %}{% endblock %}
+	<!--End of Custom CSS Requirements-->
+	<link type="text/css" href="/css/bootstrap.min.css" rel="stylesheet" />
+	<link type="text/css" href="/css/bootstrap-responsive.min.css" rel="stylesheet" />	
+	<link type="text/css" href="/css/docs.css" rel="stylesheet" />
+	<title>MeKuido - {% block title %}Administrador{% endblock %}</title>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/admin/">MeKuido</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+	            <li class="dropdown">
+	            	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	            	 	Administración
+          				<b class="caret"></b>
+          			</a>
+          			<ul class="dropdown-menu">
+          				<li><a href="/admin/schools/list">Lista de Colegios</a></li>
+						<li><a href="/admin/schools/add">Agregar Colegio</a></li>
+						<li><a href="/admin/classes/add">Agregar Cursos</a></li>
+						<li><a href="/admin/teachers/add">Agregar Profesores</a></li>
+          			</ul>
+          		</li>
+				
+				<li  class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Que Comí
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="/admin/foods/list">Lista de Alimentos</a></li>	
+						<li><a href="/admin/foods/add">Agregar Alimentos</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Trivia
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="/admin/trivia/listQuestions">Preguntas trivia</a></li>
+						<li><a href="/admin/trivia/1/addQuestion">Agregar pregunta</a></li>
+						<!--li><a href="/admin/trivia/add">Crear Trivia</a></li-->
+					</ul>
+				</li>
+				<li><a href="/admin/contacts/list">Contactos</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Varios
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="/admin/avatars/add">Crear Avatar</a></li>
+						<li><a href="/admin/news/">Administrar avisos</a></li>
+						<li><a href="/admin/reports/list">Reportes</a></li>
+						<li><a href="/admin/scripts/">Tareas</a></li>
+					</ul>
+				</li>
+				<li><a href="#">{{user_mail}}</a></li>
+				<li><a href="{{logout_url}}">Salir</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+    	{%if flash %}
+    	<div class="row">
+    		<div class="span12">
+    			<div class="alert">
+    				{{flash}}
+    			</div>
+    		</div>
+    	</div>{% endif %}
+
+			
+		<div class="row" >	
+			<!--content goes here-->
+			<div class="span12">
+			{% block content %}{{ content }}{% endblock %}
+			</div>
+		</div>
+    </div>
+    <div class="container">
+		<footer>
+			<div class="row">
+				<div class="span4 offset4">
+					MeKuido.info
+				</div>
+			</div>
+		</footer>
+		
+		<div id="preload">
+			
+		</div>
+	</div>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>	
+	
+	<!--script type="text/javascript" src="/js/bootstrap-dropdown.js"></script-->
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  </body>
+  	<!--End of Time selector requirements-->
+	<!--Custom Javascript Code Needed-->
+	{% block js_requires %}{% endblock %}
+	{% block js_activities %}{% endblock %}
+	<!--End of Custom Javascript --> 
+</html>

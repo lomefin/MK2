@@ -1,0 +1,27 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Cambiar datos de  {{student.student_account.name}} </h1>
+
+{% if student %}
+	
+	<div class="" style="">
+		
+		<p><h3 style="display:inline">{{student.student_account.surname}}, {{student.student_account.name}}</h3></p>
+		<form action="" method="post">
+		<p>Nombre de usuario actual:{{student.student_account.system_login}}</p>
+		<p>Nuevo nombre de usuario <input type="text" name="new_login" /></p>
+		<p><input type="submit" value="cambiar" /></p>
+		<p>Contraseña: {{student.student_account.system_password}}</p>
+		<p>Nota: puede que el nombre de usuario difiera con el seleccionado si es que ya existe un nombre de usuario igual</p>
+		</form>
+	</div>
+	
+
+{% else %}
+	<p>No hay alumno con ese id</p>
+{% endif %}
+<div class="clear" style="clear:both"></div>
+
+
+{% endblock content %}

@@ -1,0 +1,68 @@
+﻿.foodList input[type="text"]
+{
+	width: 40px;
+	height: 30px;
+	
+	font-family: "myriad-pro-1","myriad-pro-2",sans-serif;
+	line-height: 30px;
+	overflow: hidden;
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 0px;
+	border: 2px solid #ccc;
+	text-align: center;
+}
+.foodList
+{
+	margin-top: 0px;
+	overflow: auto;
+	height: 280px;
+}
+.foodList tr
+{
+	margin-bottom: 2px;
+	cursor: default;
+}
+.foodList tr:hover
+{
+	font-weight: bolder;
+}
+.updown img
+{
+	height: 20px;
+	min-width: 20px;
+	line-height: 30px;
+	overflow: hidden;
+	color: black;
+	font-weight: bold;
+	padding: 0px;
+	cursor: pointer;
+	
+}
+
+table.results
+{
+	margin-top: 10px;
+	border: 1px solid black;
+	background-color: white;
+}
+table.results thead
+{
+	background-color: orange;
+	font-size: large;
+}
+table.results th
+{
+	text-align: left;
+	padding-right: 40px;
+}
+table.results .total
+{
+	border-top: 2px solid black;
+	background-color: yellow;
+}
+.oddRow
+{
+	background-color: #f3f3f3;
+}

@@ -1,0 +1,51 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Lista de Colegios</h1>
+<section id="schools">
+<h2>Colegios Activos</h2>
+{% if schools %}
+
+	{% for school in schools %}
+
+	<div class="page-header">
+		<h2 id="school{{school.key.id}}">{{school.name}}</h2>
+		<div class="schoolDataBody"></div>
+		<div class="schoolDataActions">
+			<a href="/admin/classes/list/{{school.key.id}}" class="btn btn-large btn-primary">Lista de cursos</a>
+			<a href="/admin/teachers/{{school.key.id}}/list" class="btn btn-large btn-success">Lista de profesores</a>
+			<!--a href="/admin/schools/{{school.key.id}}/weeks" class="btn btn-large">Definir semanas</a-->
+		</div>
+	</div>
+
+	{% endfor %}
+
+{% else %}
+	<p>No hay colegios activos en el sistema</p>
+{% endif %}
+</section>		
+<h2>Cursos Inactivos</h2>
+<section id="inactive_schools">
+{% if inactive_schools %}
+
+	{% for school in inactive_schools %}
+
+	<div class="page-header">
+		<h2 id="school{{school.key.id}}">{{school.name}}</h2>
+		<div class="schoolDataBody"></div>
+		<div class="schoolDataActions">
+			<a href="/admin/classes/list/{{school.key.id}}" class="btn btn-large btn-primary">Lista de cursos</a>
+			<a href="/admin/teachers/{{school.key.id}}/list" class="btn btn-large btn-success">Lista de profesores</a>
+			<!--a href="/admin/schools/{{school.key.id}}/weeks" class="btn btn-large">Definir semanas</a-->
+		</div>
+	</div>
+
+	{% endfor %}
+
+{% else %}
+	<p>No hay colegios inactivos en el sistema</p>
+{% endif %}
+</section>
+{% endblock content %}
+
+_

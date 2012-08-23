@@ -1,0 +1,61 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Lista de alumnos de {{class.name}} {{class.year}} test de Moore</h1>
+
+{% if students %}
+  <form method="post">
+	<table width="100%" class="mooreResultTable">
+	  <thead>
+	    <tr><th>Nombre</th><th>Item 42</th><th>Item 12</th><th>Item 13</th><th>Item 17</th><th>Visto por alumno?</th></tr>
+	  </thead>
+	  <tbody>  
+	  {% for student in students %}
+	  
+	    <tr>
+	      <th><a href="/admin/students/{{student.key.id}}/view">{{student.student_account.surname}}, {{student.student_account.name}}</a></th> 
+	      
+	      <td><select name="item42for{{student.key.id}}">
+		    <option value="0" {% ifequal student.moore_results.0.item42 0%}selected{%endifequal%}>No definido</option>
+		    <option value="1" {% ifequal student.moore_results.0.item42 1%}selected{%endifequal%}>Malos</option>
+		    <option value="2" {% ifequal student.moore_results.0.item42 2%}selected{%endifequal%}>Regulares</option>
+		    <option value="3" {% ifequal student.moore_results.0.item42 3%}selected{%endifequal%}>Buenos</option>
+	      </td>
+	      <td><select name="item12for{{student.key.id}}">
+		    <option value="0" {% ifequal student.moore_results.0.item12 0%}selected{%endifequal%}>No definido</option>
+		    <option value="1" {% ifequal student.moore_results.0.item12 1%}selected{%endifequal%}>Malos</option>
+		    <option value="2" {% ifequal student.moore_results.0.item12 2%}selected{%endifequal%}>Regulares</option>
+		    <option value="3" {% ifequal student.moore_results.0.item12 3%}selected{%endifequal%}>Buenos</option>
+	      </td>
+	      <td><select name="item13for{{student.key.id}}">
+		    <option value="0" {% ifequal student.moore_results.0.item13 0%}selected{%endifequal%}>No definido</option>
+		    <option value="1" {% ifequal student.moore_results.0.item13 1%}selected{%endifequal%}>Malos</option>
+		    <option value="2" {% ifequal student.moore_results.0.item13 2%}selected{%endifequal%}>Regulares</option>
+		    <option value="3" {% ifequal student.moore_results.0.item13 3%}selected{%endifequal%}>Buenos</option>
+	      </td>
+	      <td><select name="item17for{{student.key.id}}">
+		    <option value="0" {% ifequal student.moore_results.0.item17 0%}selected{%endifequal%}>No definido</option>
+		    <option value="1" {% ifequal student.moore_results.0.item17 1%}selected{%endifequal%}>Malos</option>
+		    <option value="2" {% ifequal student.moore_results.0.item17 2%}selected{%endifequal%}>Regulares</option>
+		    <option value="3" {% ifequal student.moore_results.0.item17 3%}selected{%endifequal%}>Buenos</option>
+	      </td>
+	      
+	      <td>{% if student.moore_results.0.seen %}Si{%else%}No{% endif%}</td>
+	    </tr>
+	  {% endfor %}
+	  </tbody>
+	</table>
+  <input type="submit" value="actualizar" />
+  </form>
+	
+
+{% else %}
+	<p>No hay alumnos para este curso</p>
+{% endif %}
+<div class="clear" style="clear:both"></div>
+<p><a class="actionLink" href="/teacher_panel/students/{{class.key.id}}/add"><img src="/img/plus.png" height="20px"/>Agregar alumnos a este curso</a></p>
+<table>
+	
+</table>
+
+{% endblock content %}

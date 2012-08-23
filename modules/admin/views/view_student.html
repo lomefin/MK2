@@ -1,0 +1,37 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>{{student.student_account.name}} {{student.student_account.surname}}</h1>
+
+<h2>Datos anatómicos</h2>
+  
+  <p>Altura: {{student.student_height}}</p>
+  <p>Peso: {{student.student_weight}}</p>
+  <p>Estado Nutricional: {{student.student_nutritional_status}}</p>
+  
+<h2>Ingresos</h3>
+{% for access in student.accesses %}
+  <p>Ingreso el {{access.creation_date}}</p>
+{% endfor %}
+
+<h2>Compromisos</h2>
+
+{% for goal in student.student_account.goals %}
+  <p>{{goal.goal}} {%if goal.date_completed %}(Completo){%endif%} creado el {{goal.creation_date}}</p>
+{%endfor%}
+
+<h2>Respuestas Trivia</h2>
+{% for answer in student.trivia_answers%}
+  <h3>{{answer.question.question_text}}</h3>
+  <p>Respondió: {{answer.answered.possible_answer_text}} {%if answer.answered.is_correct %}(Correcta){%endif%} en {{answer.answered.creation_date}}</p>
+{%endfor%}
+
+<h2>Respuestas de Que Comi</h2>
+{% for food_log in student.food_logs %}
+  <div>
+    <p>Fecha: {{food_log.date_created}}</p>
+    <p>Grasas: {{food_log.total_fats}}, Proteinas: {{food_log.total_proteins}}, Carbohidratos: {{food_log.total_carbs}}</p>
+  </div>
+{%endfor%}
+
+{% endblock content %}

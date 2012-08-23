@@ -1,0 +1,29 @@
+﻿{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Lista de Operaciones</h1>
+{%if results%}
+<div>
+	<ul>
+	{%for r in results %}
+		<li>{{r}}</li>
+	{%endfor%}
+	</ul>
+</div>
+{% endif %}
+<ul>
+	<li><a href="/admin/scripts/sessions/clean">Limpiar Sesiones</a></li>
+	<li><a href="/admin/scripts/students/restart">Reiniciar Alumnos</a></li>
+	<li>
+	    <form method="get" action="/admin/scripts/students/reavaluate_imc_per_class">
+		Reevaluar IMC de curso <select name="class_id">
+		{% for c in classes %}
+		    <option value="{{c.key.id}}" >{{c.name}} Colegio {{c.school.name}}</option>
+		{% endfor %}
+		</select>
+		<input type="submit" value="Iniciar" />
+	    </form></li>
+      <li><a href="/admin/scripts/renameICMValues">Renombrar estados nutricionales</a></li>
+</ul>
+{% endblock content %}
+

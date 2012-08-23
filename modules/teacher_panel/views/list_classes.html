@@ -1,0 +1,18 @@
+{% extends "../../../templates/teacher_template.html" %}
+{% block content %}
+
+<h1>Mis cursos</h1>
+
+{% for class in teacher.classes_list %}
+	<div class="studentListElement" style="">
+		<h2>Curso {{class.name}} {{class.year}} {{class.school.name}}</h2>
+		<div class="options">
+			<ul>
+				<li><a class="actionLink" href="/teacher_panel/students/{{class.key.id}}/list">Ver lista de alumnos <img src="/img/right.png" height="20px"/></a></li>
+				<li><img src="/img/plus.png" height="20px"/> <a class="actionLink" href="/teacher_panel/students/{{class.key.id}}/add">Agregar Alumnos</a></li>
+			</ul>
+		</div>
+	</div>
+{% endfor %}
+
+{% endblock content %}

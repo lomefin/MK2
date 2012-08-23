@@ -1,0 +1,17 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Nuevos alumnos agregados</h1>
+<p>Esta lista contiene todos los usuarios correctamente agregados al sistema, por favor, tome note de sus nombres de usuario y password</p>
+<p><strong>Esta lista solo aparece en el momento en que los alumnos son creados, luego deberá revisarla en la lista de cursos</strong></p>
+
+		{% for student in created_users %}
+	<p>
+	Alumno: {{student.name}} {{student.surname}}. Nombre de usuario:"{{student.system_login}}", contraseña: "{{student.system_password}}"
+	</p>
+		{% endfor %}
+
+	
+<a href="/admin/students/add">Agregar m&aacute;s alumnos</a>
+
+{% endblock content %}

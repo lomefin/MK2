@@ -1,0 +1,29 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>{{school.name}}</h1>
+<h2>Lista de Profesores</h2>
+
+{% if school.school_teachers %}
+	
+	{% for teacher in school.school_teachers %}
+	<section>
+		<h2>{{teacher.user.name}} {{teacher.user.surname}} <a href="/admin/teachers/{{teacher.key.id}}/details" class="btn btn-primary">Ver Detalles</a></h2>
+		<h3>Cursos a cargo</h3>
+		<div>
+			{% for class in teacher.classes_list%}
+			<p>{{class.name}} ({{class.year}}</p>
+			{% endfor %}
+		</div>
+	</section>
+	{% endfor %}
+
+{% else %}
+	<p>No hay profesores para este colegio</p>
+{% endif %}
+<table>
+	
+</table>
+
+{% endblock content %}
+

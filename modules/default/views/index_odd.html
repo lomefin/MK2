@@ -1,0 +1,32 @@
+﻿{% extends "../../../templates/main_template.html" %}
+
+
+{% block css_requires %}
+	<link type="text/css" media="screen" href="/css/welcome.css" rel="stylesheet" />
+{% endblock %}
+{% block js_requires %}
+	<script type="text/javascript" src="/js/tutorial.js"></script>
+{% endblock js_requires %}
+{% block js_activities %}
+<script type="text/javascript" >
+	window.addEvent('domready',function(){
+		
+		setTimeout('askTutorial()',10000);
+		});
+</script>
+{% endblock %}
+{% block content %}
+
+<h1 class="menuContainerElement">¡Bienvenido!</h1>
+<p>Este es tu sitio <img src="/img/logo_small.png" alt="MeKuido">, aquí podrás encontrar ayuda para aprender a combinar mejor tus
+alimentos y tus actividades. Así podrás fortalecer tu salud.</p>
+<p>Te invitamos a revisar cada una de las secciones para que conozcas aún más lo que puedes hacer
+para mantenerte en óptimas condiciones...¡¡¡ADELANTE!!!</p>
+
+<div style="margin-bottom:50px"></div>
+{% if imc_calc.status %}
+<div style="border:1px solid black; padding:10px;">
+Tu Índice de Masa Corporal (IMC) es <strong>{{imc_calc.value|stringformat:"2.2f"}}</strong>, eso significa que estas en condición <strong>{{imc_calc.status|title}}</strong>.
+</div>
+{% endif %}
+{% endblock content %}

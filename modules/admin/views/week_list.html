@@ -1,0 +1,62 @@
+﻿{% extends "../../../templates/admin_template.html" %}
+{% block css_requires %}
+<link type="text/css" href="/css/weeks.css" rel="stylesheet" media="screen" />
+{% endblock css_requires %}
+{% block content %}
+
+<h1>Lista de semanas para colegio {{school.name}} para el año {{year}}</h1>
+
+<form action="" method="post">
+{% for week in weeks %}
+<a name="week{{week.year_week_number}}"></a>
+<div class="weekContainer" id="weekContainer{{week.year_week_number}}" style="border: 1px solid black;">
+	<div class="weekSpan">Semana del {{week.start_date|date:"d/m/Y"}} hasta el {{week.end_date|date:"d/m/Y"}} 
+		
+	</div>
+	<div class="startWeek">
+		<p id="startingWeek{{week.year_week_number}}" class="inactive">Esta es la semana inicial</p>
+		<p id="weekNumber{{week.year_week_number}}" class="inactive">Esta es la semana numero </span><span id="relativeWeekNumber{{week.year_week_number}}"></p>
+		<p id="defineAsStartingWeek{{week.year_week_number}}" class="active"><a href="#" onclick="startWeek(this)" id="startWeek{{week.year_week_number}}">Definir como semana inicial</a></p>
+	</div>
+	<div class="endWeek">
+		<p><a onclick="setAsEndWeek(this)" id="defineAsEndWeek{{week.year_week_number}}" href="#">Definir como semana final</a></p>
+	</div>
+	<div class="weekMode">
+		<div id="weekModeOnline{{week.year_week_number}}" class="active">
+			<p>En esta semana se realizarán actividades online </p>
+			<ul>
+				<li><a href="#" id="fromOnlineToOffline{{week.year_week_number}}" onclick="toOffline(this);">(Cambiar a jornada reflexiva)</a></li>
+				<li><a href="#" id="fromOnlineToVacation{{week.year_week_number}}" onclick="toVacation(this)">(Cambiar a vacaciones)</a></li>
+			</ul>
+		</div>
+		<div id="weekModeOffline{{week.year_week_number}}" class="inactive">
+			<p>En esta semana se realizará la jornada reflexiva</p>
+			<ul>
+				<li><a href="#" id="fromOfflineToOnline{{week.year_week_number}}" onclick="toOnline(this)">(Cambiar a actividad online)</a></li>
+				<li><a href="#" id="fromOfflineToVacation{{week.year_week_number}}" onclick="toVacation(this)">(Cambiar a vacaciones)</a></li>
+			</ul>
+		</div>
+		<div id="weekModeVacation{{week.year_week_number}}" class="inactive">
+			<p>En esta semana hay vacaciones</p>
+			<ul>
+				<li><a href="#" id="fromVacationToOffline{{week.year_week_number}}" onclick="toOffline(this);">(Cambiar a jornada reflexiva)</a></li>
+				<li><a href="#" id="fromVacationToOnline{{week.year_week_number}}" onclick="toOnline(this)">(Cambiar a actividad online)</a></li>
+			</ul>
+		</div>
+		<input type="hidden" name="weekStartDate{{week.year_week_number}}" value="{{week.start_date}}"/>
+		<input type="hidden" name="weekEndDate{{week.year_week_number}}" value="{{week.end_date}}"/>
+		<input type="hidden" id="weekNumberValue{{week.year_week_number}}" name="weekNumberValue{{week.year_week_number}}" value="{{week.year_week_number}}"/>
+		<input type="hidden" id="weekMode{{week.year_week_number}}" name="weekMode{{week.year_week_number}}" value="online" />
+	</div>
+</div>
+{% endfor %}
+
+	<input type="hidden" name="year" value="{{year}}" />
+	<input type="submit" value="Definir" />
+</form>
+
+
+{% block js_activities %}
+{% endblock content %}
+
+{% endblock js_activities %}

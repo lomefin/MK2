@@ -1,0 +1,39 @@
+﻿{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<section>
+<header><h1>Agregar Profesor a MeKuido</h1></header>
+<div class="alert">Esta opción es para agregar profesores <em>no alumnos</em></div>
+
+<form action="" method="post" class="form form-horizontal well">
+	<fieldset>
+		<legend>Datos del Profesor</legend>
+		<div class="control-group">
+			<label class="control-label" for="user_name">Nombre de pila</label>
+			<div class="controls">
+				<input type="text" name="user_name" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="user_surname">Apellidos</label>
+			<div class="controls">
+				<input type="text" name="user_surname" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="user_surname">Colegio</label>
+			<div class="controls">
+				<select name="school">
+					{% for school in schools %}
+					<option value="{{school.key.id}}">{{school.name}}</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+		
+		
+		<input type="submit" value="Crear" />
+	</fieldset>
+</form>
+</section>
+{% endblock content %}

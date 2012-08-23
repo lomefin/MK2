@@ -1,0 +1,103 @@
+{% extends "../../../templates/admin_template.html" %}
+
+
+{%block js_activities%}	
+<script type="text/javascript">
+	function setDate(prefix)
+	{
+		var day = document.getElementById(prefix+'day');
+		day = day[day.selectedIndex].value;
+		if(day.length == 1)
+			day = '0' + day;
+		var month = document.getElementById(prefix+'month');
+		month = month[month.selectedIndex].value;
+		if(month.length == 1)
+			month = '0'+month
+		var year = document.getElementById(prefix+'year');
+		year = year[year.selectedIndex].value;
+		
+		var date = document.getElementById(prefix+'date_holder')
+		date.value = day + '/'+month+'/'+year
+	}
+		
+	
+</script>
+{% endblock js_activities%}
+{% block content %}
+
+<h1>Lista de alumnos de {{class.name}} {{class.year}}</h1>
+<form method="post">
+<p>Desde el <input type="text" name="startdate_holder" id="startdate_holder" style="display:none" /> 
+  <select id="startday" onchange="setDate('start')">
+	{% for day in days %}
+	<option value="{{day}}">{{day}}</option>
+		{% endfor%}
+  </select>
+	/
+  <select id="startmonth" onchange="setDate('start')">
+	{% for month in months %}
+	<option value="{{month}}">{{month}}</option>
+	{% endfor%}
+  </select>
+	/
+  <select id="startyear" onchange="setDate('start')">
+	{% for year in years %}
+	<option value="{{year}}">{{year}}</option>
+	{% endfor%}
+  </select>
+<br />
+hasta el <input type="text" id="enddate_holder" name="enddate_holder" style="display:none" />
+<select id="endday" onchange="setDate('end')">
+	{% for day in days %}
+	<option value="{{day}}">{{day}}</option>
+		{% endfor%}
+  </select>
+	/
+  <select id="endmonth" onchange="setDate('end')">
+	{% for month in months %}
+	<option value="{{month}}">{{month}}</option>
+	{% endfor%}
+  </select>
+	/
+  <select id="endyear" onchange="setDate('end')">
+	{% for year in years %}
+	<option value="{{year}}">{{year}}</option>
+	{% endfor%}
+  </select>
+<input type="submit" value="Revisar" />
+</form>
+
+
+</p>
+<p>Desde el {{date_from}} hasta el {{date_to}}</p>
+{% if students %}
+	<table width="100%">
+	  <thead>
+	    <tr><th>Nombre</th><th>Ingresos</th><th>Trivias</th><th>Consumos</th><th>Compromisos</th></tr>
+	  </thead>
+	  <tbody>  
+	  {% for student_data in data_list %}
+	  
+	    <tr>
+	      <th><a href="/admin/students/{{student.key.id}}/view">{{student_data.student.student_account.surname}}, {{student_data.student.student_account.name}}</a></th> 
+	      <td>{{student_data.accesses}}</td>
+	      <td>{{student_data.trivias}}</td>
+	      <td>{{student_data.foodlogs}}</td>
+	      <td>{{student_data.todos}}</td>
+	    </tr>
+	  {% endfor %}
+	  </tbody>
+	</table>
+
+	
+
+{% else %}
+	<p>No hay alumnos para este curso</p>
+{% endif %}
+<div class="clear" style="clear:both"></div>
+<p><a class="actionLink" href="/teacher_panel/students/{{class.key.id}}/add"><img src="/img/plus.png" height="20px"/>Agregar alumnos a este curso</a></p>
+<table>
+	
+</table>
+
+{% endblock content %}

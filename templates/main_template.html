@@ -1,0 +1,117 @@
+﻿<html>
+<head>
+	
+	<title>Me Kuido - {% block title %}Bienvenido{% endblock title%}</title>
+	<link type="text/css" href="/css/styles.css" rel="stylesheet" />
+	<link type="text/css" href="/css/faces.css" rel="stylesheet" />	
+	
+	
+	<link type="text/css" media="screen" href="/css/calendar-eightysix-default.css" rel="stylesheet" />
+	
+	<!--Custom CSS Requirements-->
+	{% block css_requires %}{% endblock css_requires%}
+	<!--End of Custom CSS Requirements-->
+</head>
+<body>
+    <div class="headerContainer" style="top:-40px">
+    		<div class="loginData" style="float:right"><span style="padding-right:10px">{{current_account.system_login}}</span><a href="/logout">Salir</a></div>		
+			<div class="logo"></div>
+			{%if flash %}<div class="flash">{{flash}}</div>{% endif %}
+		</div>
+    <div class="mainContainer">
+		<div class="contentContainer">	
+			<div class="generatedContent">
+				<div id="floating_right" style="float:right; width: 275px; height: 537px;">
+					<div id="absolute_floating" style="width:275px; height: 537px; border:0px solid yellow; position:absolute">
+						{% if notification_data %}
+						<div id="notification_container" style="">{{notification_data}}</div>
+						{% endif %}
+						{% if bubble_data %}
+						<div id="bubble_container" {%if bubble_data_class %}class="{{bubble_data_class}}"{%endif%} style="opacity:0;">
+							<div style="text-align:right; height: 4px; padding: 3px 40px;"><a id="closeBubble" style="border:1px solid black">x</a></div>
+							<p style="float:left"><img src="{%if not bubble_data_image%}/img/idea.png{% else %}/img/{{bubble_data_image}}.png{%endif%}" /></p>
+							<p id="bubble_message">{{bubble_data}}</p>
+						</div>
+						{% endif %}
+						{% if kid_data %}
+						<div id="kid_container" {% if show_kid %} style="opacity:1"{% endif %}>
+							<img src="/img/avatars/{{kid_data}}.png" height="300px" />
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				<div class="renderedContent">
+					{% block content %}{{ content }}{% endblock %}
+					{% if message_box %}
+					<div class="messageBox">
+						<div class="messageBoxIcon" >
+							<img src="/img/warning.png" />
+						</div>
+						<div>
+							<h1>Titulo del mensaje</h1>
+							<p>El contenido del mensaje debe ir escrito en este contenedor</p>
+						</div>
+					</div>
+					{% endif %}
+					<!--For future scrollbar view-source:http://www.solutoire.com/experiments/scrollbar/index.html -->
+					<!--div id="scrollbar1" class="scrollbar-vert"><div id="handle1" class="handle-vert"></div></div--> 
+				</div>
+				
+			</div>
+			
+			<div class="menuContainer">
+				{% if not hide_menu %}
+				<div id="food_log_menu" class="menuContainerElement"><div class="tk-salsbury"><a href="/food_log/">¿Qué Comí?</a></div></div>
+				<div id="trivia_menu" class="menuContainerElement"><div><a href="/trivia/">La Trivia</a></div></div>
+				<div id="todo_menu" class="menuContainerElement"><div><a href="/todo/">Mis compro- misos</a></div></div>
+				<div id="more_menu" class="menuContainerElement"><div><a href="/static/others">Ayudas</a></div></div>
+				{% endif %}
+			</div>
+			
+			
+			
+
+		</div>
+	    <div class="footer">
+			<p>
+				MeKuido.info Intervención del Programa prevención del sobrepeso y de la obesidad en escolares chilenos: Una apuesta a la capacidad emprendedora de los niños. Financiado por FONIS SA10I20016<br />
+				Propiedad intelectual equipo investigación <a href="http://www.uc.cl/enfermeria/">Escuela de Enfermería de la Universidad Católica de Chile</a>.<br/>
+				Desarrollado por <a href="http://leonardo.luarte.net">Leonardo Luarte</a>
+			</p>
+			
+		</div>
+	</div>
+    
+	
+	<div style="text-align:center">	
+		
+		<!--hi-->
+	</div>
+	<div id="preload"> 
+		
+		<!--preload-->	
+	</div>
+ 
+  
+  <script type="text/javascript" src="/js/mootools-core-1.3.1-full-compat.js"></script>
+  <script type="text/javascript" src="/js/mootools-more-1.3.1.1.js"></script>
+  
+  <!-- End of Common Javascript Code -->
+	
+	<!--Calendar, based on Mootools -->
+	<script type="text/javascript" src="/js/calendar-eightysix-v1.0.1.js"></script>
+	<!--End of calendar requirements -->
+	<!--Time selector, based on JQuery-->
+	
+	<!--End of Time selector requirements-->
+	{% if bubble_data %}
+	<script type="text/javascript" src="/js/closeBubble.js"></script>
+	{% endif %}
+	<!--Custom Javascript Code Needed-->
+	{% block js_requires %}{% endblock %}
+	{% block js_activities %}{% endblock %}
+	<script type="text/javascript" src="/js/ga.js"></script>
+	<!--End of Custom Javascript --> 
+</body>
+  
+</html>

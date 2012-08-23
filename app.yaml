@@ -1,0 +1,68 @@
+application: mekuido
+version: feb2012
+runtime: python
+api_version: 1
+default_expiration: "5h"
+handlers:
+- url: /css
+  static_dir: web/stylesheets
+- url: /img/
+  static_dir: web/images
+- url: /js/
+  static_dir: web/scripts
+- url: /docs/
+  static_dir: web/docs
+
+- url: /favicon\.ico
+  static_files: web/images/favicon.ico
+  upload: web/images/favicon\.ico
+
+- url: /unlogFromGoogleAcount
+  script: modules/admin/unlog.py
+- url: /admin/
+  script: modules/admin/admin.py
+  
+- url: /admin/(.*?)/.*
+  script: modules/admin/\1.py  
+  
+#- url: /admin/students/.*
+#  script: modules/admin/students.py
+  
+#- url: /admin/users/.*
+#  script: modules/admin/users.py
+  
+- url: /support/contact/.*
+  script: modules/support/contact.py
+  
+- url: /login
+  script: modules/login/login.py
+
+- url: /logout
+  script: modules/login/login.py
+  
+#- url: /start/.*
+#  script: modules/start/start.py
+
+#- url: /links/.*
+#  script: modules/links/links.py
+
+#- url: /trivia/.*
+#  script: modules/trivia/trivia.py  
+
+- url: /static/(.*)
+  script: modules/static/static.py
+
+
+  
+- url: /(\D*?)/.*  
+  script: modules/\1/\1.py
+
+- url: .*
+  script: modules/default/index.py
+
+skip_files: 
+  Thumbs.db
+
+error_handlers:
+  - file: error.html
+

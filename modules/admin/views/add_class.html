@@ -1,0 +1,56 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+<div class="header">
+	<h1>Agregar Curso</h1>
+</div>
+
+<form method="post" action="add" class="well form-horizontal">
+	<fieldset>
+		<legend>Datos del Curso</legend>
+		<div class="control-group">
+			<label>Nombre del Colegio:</label>
+			<div class="controls">
+				<select name="school_id" class="span6">
+					{% for school_data in school_list%}
+						<option value="{{school_data.key.id}}">{{school_data.name}}</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+			<label>Nivel del Curso:</th>
+			<div class="controls">
+				<select name="class_level">
+					<option value="8">8</option>
+					<option value="7">7</option>
+					<option value="6">6</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+			<label>Letra Curso:</label>
+			<div class="controls">
+				<select name="class_letter">
+					{% for letter in letters %}
+						<option value="{{letter}}">{{letter}}</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+			<label>A&ntilde;o Curso:</label>
+			<div class="controls">
+				<input type="text" name="class_year" value="{{current_year}}"/>
+			</div>
+		</div>
+		<div class="form-actions">
+			<input type="submit" value="Crear" />
+		</div>
+	</fieldset>
+	
+</form>
+
+
+{% endblock content %}
+

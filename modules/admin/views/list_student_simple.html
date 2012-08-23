@@ -1,0 +1,39 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Lista de alumnos de {{class.name}} {{class.year}}</h1>
+<p>Se consideran los accesos de alumnos desde el 8 de Julio de 2011</p>
+{% if students %}
+	<table width="100%">
+	  <thead>
+	    <tr><th>Nombre</th><th>Usuario</th><th>Password</th><th>¿Inició?</th><th>Estado Nutricional</th><th>Ingresos</th><th>Trivias</th><th>Consumos</th></tr>
+	  </thead>
+	  <tbody>  
+	  {% for student in students %}
+	  
+	    <tr>
+	      <th><a href="/admin/students/{{student.key.id}}/view">{{student.student_account.surname}}, {{student.student_account.name}}</a></th> 
+	      <td>{{student.student_account.system_login}}</td>
+	      <td>{{student.student_account.system_password}}</td>
+	      <td>{% if student.has_started %}Si{%else%}No{% endif%}</td>
+	      <td>{{student.student_nutritional_status}}</td>
+	      <td>{{student.accesses.count}}</td>
+	      <td>{{student.trivia_answers.count}}</td>
+	      <td>{{student.food_logs.count}}</td>
+	    </tr>
+	  {% endfor %}
+	  </tbody>
+	</table>
+
+	
+
+{% else %}
+	<p>No hay alumnos para este curso</p>
+{% endif %}
+<div class="clear" style="clear:both"></div>
+<p><a class="actionLink" href="/teacher_panel/students/{{class.key.id}}/add"><img src="/img/plus.png" height="20px"/>Agregar alumnos a este curso</a></p>
+<table>
+	
+</table>
+
+{% endblock content %}

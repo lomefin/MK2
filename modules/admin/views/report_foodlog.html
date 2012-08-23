@@ -1,0 +1,37 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Reporte Qué Comí</h1>
+
+<p>Seleccione de la lista el curso al que quiere revisar</p>
+<form method="post">
+	<select name="school_class">
+	{% for class in classes %}
+		<option value="{{class.key.id}}">{{class.name}} {{class.year}} colegio {{class.school.name}}</option>
+	{% endfor %}
+	</select>
+	<input type="submit" value="Listar" />
+</form>
+
+{% if students %}
+	<p>{{students.count}} Estudiantes</p>
+	<table id="foodlog_results">
+		<tr>
+			<th>Fecha</th>
+			<th>Usuario</th>
+			<th>Cantidad</th>
+		</tr>
+	{%for student in students%}	
+		{% for foodlog in student.food_logs %}
+		<tr>
+			<td>{{foodlog.creation_date}}</td>
+			<td>{{foodlog.created_by.name}}</td>
+		</tr>
+		{%endfor%}		
+		
+	{% endfor %}
+	</table>
+
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,266 @@
+﻿body
+{
+	background-color: white;
+	#background-image:url(/img/background.png);
+	background-repeat: no-repeat;
+	text-align:center;
+}
+div
+{
+	text-align:left;
+}
+
+.longParagraph
+{
+	width: 14.76cm;
+	font-size: 8pt;
+	text-align:left;
+}
+.shortParagraph
+{
+	width: 150px;
+	font-size: 8pt;
+	text-align:justify;
+	margin: 2px 0px 2px 0px;
+}
+.mainContainer
+{
+	font-family: Verdana;
+	font-size: 10pt;
+	color: blue;
+	margin: 5px 10px;
+	min-height: 600px;
+	
+}
+
+
+.contentContainer
+{
+	padding: 0cm 0cm 0cm 0cm;
+	border: 1px solid black;
+	position: relative;
+	min-height: 600px;
+}
+	.contentContainer p
+	{
+		margin-top: 2px;
+		margin-bottom: 5px;
+	}
+	.contentContainer h1
+	{
+		font-family: "myriad-pro-1","myriad-pro-2";
+		font-size: 16pt;
+		color: #6EC4C8;
+		margin-top: 1px;
+		margin-left: 10px;
+		margin-bottom: 3px;
+	}
+	.contentContainer h2
+	{
+		font-family: "myriad-pro-1","myriad-pro-2";
+		font-size: 14pt;
+		color: Black;
+		font-weight: bold;
+		margin-left: 3px;
+	}
+	.contentContainer ul
+	{
+		padding-right: 2.6cm;
+	}
+		.contentContainer ul li
+		{
+			margin-top: 0.2cm;
+			margin-bottom: 0.3cm;
+		}
+	.contentContainer .generatedContent
+	{
+		border: 1px solid green;
+		min-height: 600px;
+		
+	}
+	
+.logo
+{
+	width: 174px;
+	height: 118px;
+	margin: 18px 0px 7px 21px;
+	background-image:url(/images/logosuperior.png);
+	background-repeat:no-repeat;
+
+}
+a
+{
+	text-decoration: none;
+	font-weight: bold;
+	color: rgba(40,0,0,1);
+	border: none;
+}
+img{
+	border: none;
+}
+a:hover
+{
+	text-decoration: underline;
+}
+.headerPics
+{
+	margin-left: 176px;
+	position: fixed;
+	
+	background-image:url(/images/fotocabecera.png);
+	width:694px;
+	height:196px;
+	z-index:1;
+	-o-border-radius: 13px;
+	-moz-border-radius-topright: 13px;
+	-webkit-border-top-right-radius: 13px;
+	border-radius: 13px;
+	-moz-box-sizing: border-box;
+	-opera-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-khtml-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.menuContainer
+{
+	padding-top: 0px;
+	padding-left: 0px;
+	width: 185px;
+	border: 1px solid black;
+	min-height: 400px;
+}
+	.menuContainer ul
+	{
+		padding:0px;
+		margin: 0px;
+		width: 100%;
+	}
+	.menuContainer li
+	{
+		border-top: 1px solid black;
+		border-right: 2px solid black;
+		list-style-type: none;
+		padding: 0;
+		padding-left: 2px;
+		margin: 0;
+		width: 181px;
+	}
+	.menuContainer li a
+	{
+		text-decoration: none;
+	}
+	.menuContainer li a:hover
+	{
+		color: white;
+	}
+	.menuContainer li:hover
+	{
+		background-color: green;
+		color: white;
+	}
+	
+.graphicList li
+{
+	list-style-type:none;
+	list-style-image:url(/images/v.gif);
+	
+}
+.footer
+{
+	text-align: center;
+	color: white;
+	font-family: "myriad-pro-1","myriad-pro-2";
+	font-size: 8pt;
+	
+}
+#preload
+{
+	display:none;
+}
+	#preload img
+	{
+		display:none;
+	}
+	
+div
+{
+	
+}
+
+.longParagraph
+{
+	width: 14.76cm;
+	font-size: 8pt;
+	text-align:left;
+}
+.shortParagraph
+{
+	width: 350px;
+	font-size: 8pt;
+	text-align:justify;
+	margin: 2px 0px 2px 0px;
+}
+
+.studentListElement
+{
+	width: 90%;
+	border: 1px solid black; 
+	margin:10px; 
+	background-color: rgba(50,200,50,0.8); 
+	color: rgba(10,10,10,1);
+	float:left; 
+	border-radius:7px;
+	padding: 5px;
+	font-family:  sans-serif,monospace;
+	font-size: 1.2em;
+}
+.studentListElement table{
+    font-size: 10pt;
+}
+.studentListElement h3 {font-size:1.6em; color:black; margin: 3px;}
+p.warn {color: red; font-weight:bold}
+
+.picker 
+{
+	cursor: pointer;
+	width: 55px;
+	height: 55px;
+	display: inline-block;
+	background: url('/img/calendar19.gif') no-repeat;
+	margin-left: -35px;
+	margin-top: 20px;
+	position: absolute;
+	display: inline;
+}
+input[type="text"]
+{
+	min-width: 200px;
+	font-size: 16pt;
+	line-height: 18pt;
+	height: 26px;
+	text-align:right;
+}
+input[type="checkbox"]
+{
+	width: 26px;
+	height: 26px;
+	font-size: 14pt;
+}
+
+label
+{
+	font-size: 14pt;
+}
+select
+{
+	height: 26px;
+	min-width: 230px;
+	font-size: 16pt;
+	text-align: right;
+}
+
+.mooreResultTable select
+{
+    min-width: 140px;
+    font-size: 14pt;
+}

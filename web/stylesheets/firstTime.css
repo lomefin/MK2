@@ -1,0 +1,21 @@
+﻿.firstTime
+{
+	font-size: 12pt;
+}
+
+.firstTime input[type="text"]
+{
+	width: 150px;
+	height: 30px;
+	border: 2px solid #f3f3f3;
+	font-family: "myriad-pro-1","myriad-pro-2","Lucida Grande", Verdana, Arial, sans-serif;
+	line-height: 30px;
+	overflow: hidden;
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 0px;
+	border: 2px solid #ccc;
+}
+
+

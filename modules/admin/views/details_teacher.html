@@ -1,0 +1,21 @@
+﻿{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>{{teacher.user.name}} {{teacher.user.surname}} <small>Información</small></h1>
+<section>
+	<h2>Información del usuario</h2>
+	<p>Nombre de usuario: {{teacher.user.system_login}}</p>
+	<p>Contraseña: {{teacher.user.system_password}}</p>
+</section>
+<section>
+	<h2>Cursos a cargo</h2>
+	{%if teacher.classes_list %}
+		{% for class in teacher.classes_list %}
+			<p>{{class.name}}</p>
+		{% endfor%}
+	{% else %}
+		<p>El profesor no tiene cursos a cargo</p>
+	{% endif %}
+</section>
+{% endblock content %}
+

@@ -1,0 +1,59 @@
+.overTxtLabel
+{
+	font-family: "myriad-pro-1","myriad-pro-2","Lucida Grande", Verdana, Arial, sans-serif;
+	color: #eee;
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom:5px;
+	width: 400px;
+	border: 0px;
+	background-color: transparent;
+}
+#compromiseBox
+{
+	width: 450px;
+	margin: 30px;
+}
+input[type="text"] ,input[type="password"] 
+{
+	font-family: "myriad-pro-1","myriad-pro-2","Lucida Grande", Verdana, Arial, sans-serif;
+	width: 400px;
+	height: 40px;
+	line-height: 30px;
+	overflow: hidden;
+	background: white;
+	color: black;
+	border: none;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 0px 5px;
+	margin: 0px;
+	margin-bottom:5px;
+	border: 2px solid #ccc;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+input[type="submit"]
+{
+	margin: 5px 10px 5px 175px;
+	background-color: #7EB6DD;
+	color: #ccc;
+	border: 3px solid #9BC1DB;
+	font-weight: bold;
+	font-size: 20pt;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+.goalList table 
+{
+	width: 430px;
+}
+.goalList td
+{
+	
+	cursor: default;
+}
+.goalList td:hover
+{
+	background-color: #FFFFB2;
+}

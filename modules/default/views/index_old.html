@@ -1,0 +1,77 @@
+﻿{% extends "../../../templates/main_template.html" %}
+
+
+{% block css_requires %}
+	<link type="text/css" media="screen" href="/css/welcome.css" rel="stylesheet" />
+{% endblock %}
+{% block js_requires %}
+	<script type="text/javascript" src="/js/tutorial.js"></script>
+{% endblock js_requires %}
+{% block js_activities %}
+<script type="text/javascript" >
+	window.addEvent('domready',function(){
+		
+		setTimeout('askTutorial()',10000);
+		});
+</script>
+{% endblock %}
+{% block content %}
+
+<h1 class="menuContainerElement">¡Bienvenido!</h1>
+<div>
+<table>
+<tr>
+	<th>ACTIVIDADES
+	<th>TODOS LOS DIAS
+	<th>4-5 VECES POR SEMANA
+	<th>2-3 VECES POR SEMANA
+	<th>CASI NUNCA
+</tr>
+<tr>
+<td>Jugar al aire libre</td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td>
+</tr><tr>
+<td>Utilizar escalas en vez de
+ascensores</td>
+<td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td>
+</tr><tr>
+<td>Ayudar con las tareas de la
+casa</td>
+<td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td>
+</tr><tr>
+<td>Caminar hasta el colegio</td>
+<td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td>
+</tr><tr>
+<td>Correr</td>
+<td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td>
+</tr><tr>
+<td>Practicar algún deporte</td>
+<td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td>
+</tr><tr>
+<td>Bailar</td>
+<td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td>
+</tr><tr>
+<td>Usar máquinas de ejercicio
+del colegio</td>
+<td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td>
+</tr><tr>
+<td>Usar computador o
+videojuego</td>
+<td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td>
+</tr><tr>
+<td>Ver televisión</td>
+<td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td><td><input type="checkbox" name="chk00"/></td>
+</tr>
+</table>
+<script type="text/javascript">
+	function giveFeedback()
+	{
+		var t = new Tutorial();
+		t.showDialog({message:'Compara tus respuestas con las recomendaciones que aparecen en la pirámide de actividad física que la encuentras en la sección AYUDA. ¿Consideras que puedes mejorar? ¡Piensa a qué puedes comprometer para aumentar la actividad que realizas!'});
+	}
+</script>
+<input type="submit" onclick="giveFeedback(); return false" value="Enviar"/>
+</div>
+
+
+
+{% endblock content %}

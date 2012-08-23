@@ -1,0 +1,63 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Lista de alumnos de {{class.name}} {{class.year}}</h1>
+<p><a href="/admin/students/{{class.key.id}}/list/simple">Ver lista simple</a>  <a href="/admin/students/{{class.key.id}}/list/report">Ver reporte rendimiento</a>  <a href="/admin/students/{{class.key.id}}/list/moore">Modificar resultados Moore</a></p>
+{% if students %}
+	{% for student in students %}
+	<div class="studentListElement {%if not student.has_started %}warn{%endif%}" style="">
+		
+		<h3>{{student.student_account.surname}}, {{student.student_account.name}}</h3> 
+		<table width="100%">
+		  <tr>
+		    <td>
+		      <p>{{student.student_account.system_login}}<a href="/admin/students/{{student.key.id}}/changelogin">(cambiar)</a>
+		      {% if student.has_started %}
+		      <p>Altura: {{student.student_height}}</p>
+		      <p>Peso: {{student.student_weight}}</p>
+		      {% else %}
+		      <p class="warn">Alumno no ha iniciado sesión</p>
+		      {% endif %}
+		      <p>Contraseña: {{student.student_account.system_password}}</p>
+		      
+		      <p>Mover a curso del mismo colegio.</p>
+		      <form method="post">
+			  <input type="hidden" name="student_id" value="{{student.key.id}}" />
+			  <select name="switch_class">
+			    {% for c in class.school.school_classes %}
+			      <option value="{{c.key.id}}">{{c.name}}</option>
+			    {% endfor %}
+			  </select>
+			  <input type="submit" width="40" value="&gt;"/>
+		      </form>
+		    </td>
+		    <td>
+		      <p>Cambiar estado nutricional</p>
+		      <form method="post" action="/admin/students/{{class.key.id}}/change_nutritional_status">
+			  <input type="hidden" name="student_id" value="{{student.key.id}}" />
+			  <select name="check_nutritional_status">
+			    <option value="" {% ifequal student.student_nutritional_status ""%} selected="selected" {%endifequal%}>(Ninguno)</option>
+			    <option value="bajo peso" {% ifequal student.student_nutritional_status "bajo peso"%} selected="selected" {%endifequal%}>bajo peso</option>
+			    <option value="normal" {% ifequal student.student_nutritional_status "normal"%} selected="selected" {%endifequal%}>normal</option>
+			    <option value="riesgo de obesidad" {% ifequal student.student_nutritional_status "riesgo de obesidad"%} selected="selected" {%endifequal%}>riesgo de obesidad</option>
+			    <option value="obeso" {% ifequal student.student_nutritional_status "obeso"%} selected="selected" {%endifequal%}>obeso</option>
+			  </select>
+			  <input type="submit" width="40" value="&gt;"/>
+		      </form>
+		      <p><a href="/admin/students/{{student.key.id}}/view">Ver más información</a></p>
+		    </td>
+		  </tr>
+		</table>
+	</div>
+	{% endfor %}
+
+{% else %}
+	<p>No hay alumnos para este curso</p>
+{% endif %}
+<div class="clear" style="clear:both"></div>
+<p><a class="actionLink" href="/teacher_panel/students/{{class.key.id}}/add"><img src="/img/plus.png" height="20px"/>Agregar alumnos a este curso</a></p>
+<table>
+	
+</table>
+
+{% endblock content %}

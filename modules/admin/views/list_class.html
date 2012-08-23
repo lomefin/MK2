@@ -1,0 +1,29 @@
+﻿{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Lista de Cursos de {{school.name}}</h1>
+
+{% if classes %}
+	{% for class in classes %}
+<div class="row">
+	<div class="span11 offset1">
+		<h2>{{class.name}} <small>{{class.year}}</small></h2>
+		<p>Profesor a cargo: 
+			{% if class.teacher %}{{class.teacher.user.name}} {{class.teacher.user.surname}}{%else%}No se ha asignado profesor aún{%endif%}
+		</p>
+		<div class="actions">
+			<a href="/admin/students/{{class.key.id}}/list" class="btn btn-primary">Lista de alumnos</a>
+			<a href="/admin/students/{{class.key.id}}/add" class="btn btn-sucess">Agregar alumnos</a>
+			<a href="/admin/classes/{{class.key.id}}/assign" class="btn btn-warning">Asignar Profesor</a>
+		</div>
+	</div>
+</div>
+
+		{% endfor %}
+{% else %}
+	<p>No hay cursos para este colegio</p>
+{% endif %}
+<a href="/admin/teachers/{{school.key.id}}/list">Lista de profesores</a>
+	
+{% endblock content %}
+

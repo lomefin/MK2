@@ -1,0 +1,62 @@
+#question
+{
+	font-size: 20pt;
+	font-weight: bold;
+	color: black;
+}
+
+#possible_answers p
+{
+	min-height: 30px;
+	width: 400px;
+	border: 2px solid #ccc;
+	font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+	line-height: 30px;
+	font-size: 20px;
+	padding: 10px;
+	background-color: #44ff99;
+	border-radius: 8px;
+	cursor: default;
+}
+#possible_answers p:hover
+{
+	background-color: #FFEC80;
+}
+
+.foodList input[type="text"]
+{
+	width: 40px;
+	height: 30px;
+	font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+	line-height: 30px;
+	overflow: hidden;
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 0px;
+	border: 2px solid #ccc;
+	text-align: center;
+}
+#feedback
+{
+	clear:both;
+	border: 2px solid black;
+	border-radius: 8px;
+	font-size: 12pt;
+	margin: 150px 0px 0 0;
+	padding: 10px 5px;
+	line-height: 150%;
+}
+#kid_face
+{
+	float:right; 
+	height: 200px; 
+	width:200px; 
+}
+#answer
+{
+	font-size: 30pt;
+	padding: 60px 5px 0px;
+	text-align:center;
+	
+}

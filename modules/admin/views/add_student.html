@@ -1,0 +1,36 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+
+<h1>Agregar Alumno</h1>
+<p>Agregandose al curso {{class.name}} de {{class.school.name}}</p>
+
+<form method="post" action="add">
+	<table class="table table-bordered">
+		<thead>
+		      <tr>	
+		      	<th></th>	
+				<th>Nombres</th>
+				<th>Apellidos</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in user_count_range %}
+			<tr>
+				<td>{{i}}</td>
+				<td><input type="text" name="student_name{{i}}" maxlength="30" placeholder="Nombres"  pattern="[\w]+[\D]+" title="Nombres del alumno, sin espacios extra"/></td>
+				<td><input type="text" name="student_surname{{i}}" maxlength="30" placeholder="Apellidos" pattern="[\w]+[\D]+" title="Apellidos del alumno, sin espacios extra"/></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3"><input type="submit" value="Agregar" /></td>
+			</tr>
+		</tfoot>
+	</table>
+	
+
+</form>
+
+
+{% endblock content %}

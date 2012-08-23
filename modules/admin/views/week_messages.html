@@ -1,0 +1,26 @@
+﻿{% extends "../../../templates/admin_template.html" %}
+{% block css_requires %}
+
+{% endblock css_requires %}
+{% block content %}
+
+<h1>Lista de mensajes por semana para el año {{year}}</h1>
+<p>Escriba los mensajes por semana para los colegios del presente año, si el numero de la semana es superior al de cualquier semana definida, se usará el mensaje de la última semana ingresada.</p>
+{% for week in weeks %}
+<div>
+	<div>Semana {{week}}</div>
+	<div>
+		<input type="text" name="messageForWeek{{week}}" />
+	</div>
+</div>
+{% endfor %}
+
+
+<input type="submit" value="Definir" />
+
+
+
+{% endblock content %}
+{% block js_activities %}
+
+{% endblock js_activities %}

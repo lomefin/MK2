@@ -1,0 +1,117 @@
+﻿{% extends "../../../templates/main_template.html" %}
+{% block css_requires %}
+<link type="text/css" href="/css/foodLog.css" rel="stylesheet" media="screen" />
+{% endblock %}
+{% block js_requires %}
+
+
+
+{% endblock %}
+{% block js_activities %}
+<script type="text/javascript">
+	
+	var myFx = new Fx.Tween('bubble_container', {
+    duration: 'long',
+    transition: 'bounce:out',
+    property: 'opacity'}
+	);
+	var btnFx = new Fx.Tween('btnReady',{
+	duration: 'long',
+	transition: 'bounce:out',
+	property: 'opacity'}
+	);
+	
+	window.addEvent('domready',function(){
+		setTimeout('showKid()',5000);
+		setTimeout('showButton()',10000);
+		//setTimeout('hideKidFace()',3700)
+		{% if kid_face %} KidFaceFxSlow.start(0,1);{% endif %}
+		
+		});
+	var showKid = function(){myFx.start(0,1);};
+	var showButton = function(){btnFx.start(0,1);};
+	//var hideKidFace = function(){KidFaceFxFast.start(1,0);}
+	
+	var queryString = '';
+  var dataUrl = '';
+
+  function onLoadCallback() {
+	if (dataUrl.length > 0) {
+	  var query = new google.visualization.Query(dataUrl);
+	  query.setQuery(queryString);
+	  query.send(handleQueryResponse);
+	} else {
+	  var dataTable = new google.visualization.DataTable();
+	  dataTable.addRows(3);
+
+	  dataTable.addColumn('number');
+	  
+	  dataTable.setValue({{0}},0,{{chart_values.0}});
+	  dataTable.setValue({{1}},0,{{chart_values.1}});
+	  dataTable.setValue({{2}},0,{{chart_values.2}});
+	  
+	  draw(dataTable);
+	}
+  }
+
+  function draw(dataTable) {
+	var vis = new google.visualization.ImageChart(document.getElementById('chart'));
+	var options = {
+	  chf: 'bg,s,00000000',
+	  chs: '250x200',
+	  cht: 'p',
+	  chco: '99FF00,FF9900,0099FF',
+	  chd: 's:SYl',
+	  chdl: 'Proteínas|Grasas|Carbohidratos',
+	  chl: '||',
+	  chdlp: 'b',
+	
+	};
+	vis.draw(dataTable, options);
+  }
+
+  function handleQueryResponse(response) {
+	if (response.isError()) {
+	  alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+	  return;
+	}
+	draw(response.getDataTable());
+  }
+
+  google.load("visualization", "1", {packages:["imagechart"]});
+  google.setOnLoadCallback(onLoadCallback);
+	
+</script>
+{% endblock %}
+{% block content %}
+
+<h1>Veamos tu balance nutricional</h1>
+<p></p>	
+<script language="javascript" src="http://www.google.com/jsapi"></script>
+
+<div style="width:280px; float:left; z-index:1 ">
+	<div id="chart">Cargando tu informaci&oacute;n...</div>
+	<table class="results">
+		<thead><tr><th colspan="2" style="min-width:180px">Recuento de Calorías</th><th style="text-align:center">Ideal</tr></thead>
+		<tbody>
+			<tr><th>por carbohidratos</th><td>{{percentages.2|floatformat}}%</td><td style="text-align:center">55-68%</td></tr>
+			<tr><th>por proteínas</th><td>{{percentages.0|floatformat}}%</td><td style="text-align:center">12-15%</td></tr>
+			<tr><th>por grasas</th><td>{{percentages.1|floatformat}}%</td><td style="text-align:center">20-30%</td></tr>
+			<tr class="total"><th>Total</th><td>{{chart_values.3}}</td><td></td></tr>
+		</tbody>
+	</table>
+</div>
+<div style="text-align:center">
+	<h2>Ayer consumiste</h2>
+	<p style="font-size: 24pt">{{chart_values.3}}</p>
+	<p>Calorías</p>
+	<p>Tu deberías consumir</p>
+	<p style="font-size: 24pt">{{analyzer.minimal_required_calories}}</p>
+	<p></p>
+</div>
+
+<div class="clear"></div>
+<p><strong>Nota:</strong>Esto es sólo una aproximación de los nutrientes que comiste ayer... pudiste haber olvidado algo.</p>
+<button type="button" id="btnReady" style="opacity:0"><a href="/">Listo</a></button>
+
+{% endblock content %}

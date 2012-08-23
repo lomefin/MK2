@@ -1,0 +1,284 @@
+﻿body
+{
+	background-color: white;
+	#background-image:url(/img/background.png);
+	background-repeat: no-repeat;
+	text-align:center;
+}
+div
+{
+	text-align:left;
+}
+.upperMenu 
+{
+	text-align: right;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+}
+.upperMenu p
+{
+	display: inline;
+	min-width: 100px;
+	width: 100px;
+	height: 30px;
+	font-size: 16pt;
+	padding: 5px 20px;
+	margin: 0px 20px;
+}
+.upperMenu p a
+{
+	text-decoration: none;
+	min-width: 100px;
+}
+.upperMenu p:hover
+{
+	background-color: blue;
+	color: white;
+	font-weight: bolder;
+	min-width: 100px;
+	width: 100px;
+	height: 30px;
+}
+.longParagraph
+{
+	width: 14.76cm;
+	font-size: 8pt;
+	text-align:left;
+}
+.shortParagraph
+{
+	width: 150px;
+	font-size: 8pt;
+	text-align:justify;
+	margin: 2px 0px 2px 0px;
+}
+.mainContainer
+{
+	font-family: "myriad-pro-1","myriad-pro-2";
+	font-size: 10pt;
+	color: blue;
+	margin: 5px 10px;
+	min-height: 600px;
+	
+}
+
+.logoContainer
+{
+		font-family: "myriad-pro-1","myriad-pro-2";
+		font-size: 20pt;
+}
+.avatarContainer
+{
+	min-height: 500px;
+	float:left;
+}
+a.actionLink
+{
+	font-size: 14pt;
+}
+tr:hover
+{
+	background-color: #eeeeff;
+}
+.addStudent input[type="text"]:hover
+{
+	background-color: #eeee66;
+}
+.addStudent th
+{
+	font-size: 24px;
+}
+.addStudent input[type="text"]
+{
+	width: 200px;
+	height: 30px;
+	font-size: 20px;
+}
+.contentContainer
+{
+	padding: 0cm 0cm 0cm 0cm;
+	border: 1px solid black;
+	position: relative;
+	min-height: 600px;
+}
+	.contentContainer p
+	{
+		margin-top: 2px;
+		margin-bottom: 5px;
+	}
+	.contentContainer h1
+	{
+		font-family: "myriad-pro-1","myriad-pro-2";
+		font-size: 28pt;
+		color: #6EA4A8;
+		margin-top: 5px;
+		margin-bottom: 3px;
+		margin-left: 10px;
+	}
+	.contentContainer h2
+	{
+		font-family: "myriad-pro-1","myriad-pro-2";
+		font-size: 20pt;
+		color: Black;
+		font-weight: bold;
+	}
+	.contentContainer ul
+	{
+		padding-right: 2.6cm;
+	}
+		.contentContainer ul li
+		{
+			margin-top: 0.2cm;
+			margin-bottom: 0.3cm;
+		}
+	.contentContainer .generatedContent
+	{
+		min-height: 600px;
+		margin-left: 20px;
+	}
+	
+.logo
+{
+	width: 174px;
+	height: 118px;
+	margin: 18px 0px 7px 21px;
+	background-image:url(/images/logosuperior.png);
+	background-repeat:no-repeat;
+
+}
+a
+{
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+	border: none;
+}
+img{
+	border: none;
+}
+a:hover
+{
+	text-decoration: underline;
+}
+.headerPics
+{
+	margin-left: 176px;
+	position: fixed;
+	
+	background-image:url(/images/fotocabecera.png);
+	width:694px;
+	height:196px;
+	z-index:1;
+	-o-border-radius: 13px;
+	-moz-border-radius-topright: 13px;
+	-webkit-border-top-right-radius: 13px;
+	border-radius: 13px;
+	-moz-box-sizing: border-box;
+	-opera-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-khtml-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.menuContainer
+{
+	padding-top: 50px;
+	padding-left: 0px;
+}
+	.menuContainer ul
+	{
+		padding:0px;
+		margin: 0px;
+	}
+	.menuContainer li
+	{
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+	}
+.graphicList li
+{
+	list-style-type:none;
+	list-style-image:url(/images/v.gif);
+	
+}
+.footer
+{
+	text-align: center;
+	color: white;
+	font-family: "myriad-pro-1","myriad-pro-2";
+	font-size: 8pt;
+	
+}
+#preload
+{
+	display:none;
+}
+	#preload img
+	{
+		display:none;
+	}
+	
+div
+{
+	
+}
+p
+{
+	
+}
+.flash
+{
+	width: 100%;
+	border-radius: 7px;
+	background-color: #33ff33;
+	color: white;
+}
+.longParagraph
+{
+	width: 14.76cm;
+	font-size: 8pt;
+	text-align:left;
+}
+.shortParagraph
+{
+	width: 350px;
+	font-size: 8pt;
+	text-align:justify;
+	margin: 2px 0px 2px 0px;
+}
+.picker 
+{
+	cursor: pointer;
+	width: 55px;
+	height: 55px;
+	display: inline-block;
+	background: url('/img/calendar19.gif') no-repeat;
+	margin-left: -35px;
+	margin-top: 20px;
+	position: absolute;
+	display: inline;
+}
+.studentListElement
+{
+	min-height: 80px; 
+	min-width:200px; 
+	border: 1px solid black; 
+	margin:10px; 
+	background-color: #aaaaff; 
+	color: white;
+	float:left; 
+	border-radius:7px;
+	padding: 5px;
+}
+
+dl dt
+{
+	font-size: 14pt;
+	font-weight: bolder;
+	margin-top: 10pt;
+}
+dl dd
+{
+	font-size: 12pt;
+	
+}
