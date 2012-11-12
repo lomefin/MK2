@@ -18,10 +18,6 @@ import cgi
 import datetime
 import os
 import lib
-#import controller.sessions.SessionManager
-#from controller.appengine_utilities.sessions import Session
-#from controller.appengine_utilities.flash import Flash
-#from controller.appengine_utilities.cache import Cache
 from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
@@ -33,7 +29,7 @@ import string
 import datetime
 from datetime import date, timedelta
 from time import strptime
-
+import logging
 from model.models import *
 
 class TriviaIndexHandler(mkhandler.MKHandler):
@@ -55,38 +51,7 @@ class TriviaIndexHandler(mkhandler.MKHandler):
 			
 	
 	def user_has_questions_remaining(self):
-		current_user = self.current_student_user
-		student_school = current_user.attending_class.school
-		answered_questions = MKTriviaAnswer.all().filter('answered_by =' , current_user)
-		questions_answered = []
-		#Get current week
-		current_week = MKWeek.all().filter('school = ',student_school).filter('end_date > ',datetime.date.today()).order('end_date').get()
-		if not current_week:
-			return None
-		#Count how many answers have been answered since the current week start date
-		answer_count = MKTriviaAnswer.all().filter('answered_by =' , current_user).filter('creation_date > ' , current_week.start_date).count()
-		
-		if answer_count >= 5:
-			return None
-		
-		
-		for answer in answered_questions:
-			questions_answered.append(answer.question.key())
-		
-		possible_questions = db.Query(MKTriviaQuestion,keys_only=True).order('last_displayed')
-		
-		selected_question = None
-		
-		for question_key in possible_questions:
-			
-			if question_key not in questions_answered:
-				selected_question = question_key
-				break
-		
-		if selected_question is None:
-			return None
-		
-		selected_question = MKTriviaQuestion.get(selected_question)
+		selected_question = db.Query(MKTriviaQuestion).order('last_displayed').get()
 		selected_question.last_displayed = datetime.datetime.now()
 		selected_question.put()
 		
@@ -94,6 +59,13 @@ class TriviaIndexHandler(mkhandler.MKHandler):
 	
 	def internal_get(self):
 	
+		trivias_answered = 0
+		if(self.session and self.session.has_key("TRIVIAS_ANSWERED")):
+			trivias_answered = self.session["TRIVIAS_ANSWERED"]
+			self.session["TRIVIAS_ANSWERED"] = trivias_answered + 1
+			if trivias_answered % 5 == 0:
+				self.redirect('/todo/fast')
+
 		next_question = self.user_has_questions_remaining()
 		
 		flash = ''
@@ -104,16 +76,10 @@ class TriviaIndexHandler(mkhandler.MKHandler):
 			self.render('notrivia', template_values=values)
 			return
 		
-		
-		
 		values = { 'flash' : flash , 'question' : next_question}
 		
 		self.render('index', template_values=values)
 		
-		#self.base_auth()
-		#self.get_internal()
-		#user_logout = users.create_logout_url("/eventos/")
-		#self.response.out.write("<a href=\"%s\">Logout</a>." %user_logout)
 
 class TriviaAnswerHandler(mkhandler.MKHandler):
 	

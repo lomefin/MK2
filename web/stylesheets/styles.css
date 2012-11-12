@@ -327,7 +327,7 @@ form.stdForm
 	border: 2px solid black;
 }
 
-input[type="submit"], button[type="button"], p.simulatedButton
+button[type="button"], p.simulatedButton
 {
 	margin: 5px 10px 5px 175px;
 	background-color: #7EB6DD;

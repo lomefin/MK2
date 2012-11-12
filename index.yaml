@@ -35,6 +35,16 @@ indexes:
   - name: created_by
   - name: date_completed
 
+- kind: MKModel
+  properties:
+  - name: is_active
+  - name: creation_date
+
+- kind: MKSchool
+  properties:
+  - name: is_active
+  - name: name
+
 - kind: MKTriviaAnswer
   properties:
   - name: answered_by
@@ -50,15 +60,3 @@ indexes:
   - name: school
   - name: year
   - name: number
-
-- kind: MKSchool
-  properties:
-  - name: is_active
-  - name: name
-
-- kind: MKModel
-  properties:
-  - name: is_active
-  - name: creation_date
-
-

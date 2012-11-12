@@ -3,29 +3,28 @@
 
 <h1>Crear Pregunta para la trivia <a href="">{{trivia_name}}</a></h1>
 
-<form method="post" action="addQuestion">
+<form method="post" action="addQuestion" class="formHorizontal">
 	<h2>Datos de la Pregunta</h2>
-	<table border="0">
-		<tr>
-			<th>Pregunta:</th>
-			<td>
-				<input type="text" name="question_text" />
-			</td>
-		</tr>
-		<tr>
-			<th>Feedback pregunta:</th>
-			<td>
-				<input type="text" name="feedback_text" />
-			</td>
-		</tr>
-		<tr>
-			<th>Frase:</th>
-			<td>
-				<input type="text" name="phrase_text" />
-			</td>
-		</tr>
-	</table>
-	<table>
+	<div class="control-group">
+		<label class="control-label" for="question_text">Pregunta</label>
+		<div class="controls">
+			<input type="text" name="question_text" />
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="feedback_text">Feedback pregunta</label>
+		<div class="controls">
+			<input type="text" name="feedback_text" />
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="question_text">Frase</label>
+		<div class="controls">
+			<input type="text" name="phrase_text" />
+		</div>
+	</div>
+	
+	<table class="table table-striped">
 		<tr>
 			<th>Alternativa</th>
 			<th>Texto alternativa</th>

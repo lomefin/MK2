@@ -5,12 +5,31 @@
 
 {% if questions %}
 	{% for question in questions %}
-	<div style="border-bottom: 2px solid black">
-		<h2>{{question.question_text}}<h2>
-		<h3> Respuestas posibles:</h3>
-		{% for answer in question.possible_answers %}
-			<p {% if answer.is_correct %} style="background-color:white; font-weight: bold; color: green;" {% endif %}>{{answer.possible_answer_text}}</p>
-		{% endfor %}
+	<div class="row">
+		<div class="span10">
+			<p class="lead">{{question.question_text}}?</p>
+			<p>Frase: {{question.phrase}}</p>
+			<p>Feedback: {{question.general_feedback}}</p>
+			<p> Respuestas posibles:</p>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Posible respuesta</th>
+						<th>Correcta?</th>
+						<th>Feedback</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for answer in question.possible_answers %}
+					<tr>
+						<td>{{answer.possible_answer_text}}</td>
+						<td>{%if answer.is_correct %}<i class="icon-ok"></i>{%endif%}</td>
+						<td>{{answer.feedback_text}}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</div>
 	{% endfor %}
 {% else %}

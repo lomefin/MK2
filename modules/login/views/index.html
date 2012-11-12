@@ -9,18 +9,31 @@
 </script>
 {% endblock %}
 {% block content %}
-<form method="post" action="/login" id="loginForm">
-	<div style="width:300px; margin: 10px auto;">
-		<div>
-			<input type="text" name="username"  id="usernameInput" placeholder="Nombre de usuario" />
-		</div>
-		<div>
-			<input type="password" name="password"  id="passwordInput" placeholder="Contraseña"/>
-		</div>
-		<div>
-			<input type="submit" value="Ingresar" />
-		</div>
+<div class="row">
+	<div class="span4 offset4">
+		<form method="post" action="/login" id="loginForm" class="formHorizontal">
+			<div style="background-color: rgba(250,250,250,0.6); padding: 40px; border-radius: 12px;">
+				<img src="/img/logo_large.png" style="width: 300px; margin-bottom: 20px;"/>
+				<small>Para usar MeKuido necesitas ingresar tu nombre de usuario y contraseña, si no la sabes, pidesela a tu profesor o profesora!</small>
+				<div class="control-group">
+					<div class="controls">
+						<input type="text" name="username"  id="usernameInput" placeholder="Nombre de usuario" />
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<input type="password" name="password"  id="passwordInput" placeholder="Contraseña"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<input type="submit" value="Ingresar" class="btn btn-primary btn-large" />
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
-</form>
+</div>
+
 {% endblock content %}
 

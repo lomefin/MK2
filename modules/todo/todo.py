@@ -72,6 +72,45 @@ class TodoHandler(mkhandler.MKHandler):
 		
 		self.redirect('/todo/')
 
+class FastTodoHandler(mkhandler.MKHandler):
+	
+	def base_directory(self):
+		return os.path.dirname(__file__)
+	
+	def internal_get(self):
+	
+		account = self.current_student_user.student_account
+		goals = MKGoal.all().filter('created_by = ', account).order('creation_date')
+		accomplished = []
+		pending = []
+		for goal in goals:
+			if goal.date_completed:
+				accomplished.append(goal)
+			else:
+				pending.append(goal)
+	
+		values = {'accomplished' : accomplished, 'pending' : pending}
+		self.render('fast_todo', template_values=values)
+		
+		#self.base_auth()
+		#self.get_internal()
+		#user_logout = users.create_logout_url("/eventos/")
+		#self.response.out.write("<a href=\"%s\">Logout</a>." %user_logout)
+	
+	def internal_post(self):
+		
+		new_todo = self.request.get('newCompromise')
+		
+		if len(new_todo.strip()) == 0:
+			return
+		
+		goal = MKGoal()
+		goal.goal = new_todo
+		goal.created_by = self.current_student_user.student_account
+		goal.put()
+		
+		self.redirect('/trivia/')
+
 class CompletedGoalHandler(mkhandler.MKHandler):
 
 	def base_directory(self):
@@ -99,6 +138,7 @@ class TodoAjaxHandler(mkhandler.MKHandler):
 
 def main():
   application = webapp.WSGIApplication([('/todo/', TodoHandler),
+  										('/todo/fast', FastTodoHandler),
 										('/todo/completed/(.*?)', CompletedGoalHandler)],
                                        debug=True)
   util.run_wsgi_app(application)

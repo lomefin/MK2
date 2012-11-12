@@ -1,16 +1,80 @@
 ﻿{% extends "../../../templates/main_template.html" %}
 {% block content %}
-<dl>
-	<dt><a href="/docs/mensajes_mekuido_1.pps">Mensajes MeKuido 1</a></dt>
-	<dd>Consejos para que conozcas más del tema.</dd>
-	<dt><a href="/docs/mensajes_mekuido_2.pps">Mensajes MeKuido 2</a></dt>
-	<dd>Consejos para que elijas y tomes buenas decisiones.</dd>
-	<dt><a href="/docs/mensajes_mekuido_3.pps">Mensajes MeKuido 3</a></dt>
-	<dd>Consejos para que lo que hagas, sea lo mejor para tu salud</dd>
-	<dt><a href="/static/glossary">Glosario</a></dt>
-	<dd>Terminos generales para que puedas saber de que se tratan los conceptos que se usan en la alimentación</dd>
-	<dt><a href="/docs/alimentosSaludables.pdf" target="alimentosSaludables">Alimentos Saludables</a></dt>
-	<dd>Lista de alimentos que son saludables para ti.</dd>
-	<dt><a href="/img/piramide.jpg" target="piramide">Piramide Actividad Física</a></dt>
-</dl>
+<div class="row-fluid">
+	
+	<ul class="thumbnails">
+		<li class="span5">
+			<div class="thumbnail">
+				<img src="http://placehold.it/210x140" alt>
+				<div class="caption">
+					<p class="lead">Mensajes 1</p>
+					<p>Consejos para que conozcas más del tema.</p>
+					<p>
+						<a href="/docs/mensajes_mekuido_1.pps" class="btn btn-primary">Ver</a>
+					</p>
+				</div>
+			</div>
+		</li>
+		<li class="span5">
+			<div class="thumbnail">
+				<img src="http://placehold.it/210x140" alt>
+				<div class="caption">
+					<p class="lead">Mensajes 2</p>
+					<p>Consejos para que elijas y tomes buenas decisiones.</p>
+					<p>
+						<a href="/docs/mensajes_mekuido_2.pps" class="btn btn-primary">Ver</a>
+					</p>
+				</div>
+			</div>
+		</li>
+		<li class="span5">
+			<div class="thumbnail">
+				<img src="http://placehold.it/210x140" alt>
+				<div class="caption">
+					<p class="lead">Mensajes 3</p>
+					<p>Consejos para que lo que hagas, sea lo mejor para tu salud.</p>
+					<p>
+						<a href="/docs/mensajes_mekuido_3.pps" class="btn btn-primary">Ver</a>
+					</p>
+				</div>
+			</div>
+		</li>
+		<li class="span5">
+			<div class="thumbnail">
+				<img src="http://placehold.it/210x140" alt>
+				<div class="caption">
+					<p class="lead">Glosario</p>
+					<p>Términos generales para que puedas saber de que se tratan los conceptos que se usan en la alimentación.</p>
+					<p>
+						<a href="/static/glossary" class="btn btn-primary">Ver</a>
+					</p>
+				</div>
+			</div>
+		</li>
+		<li class="span5">
+			<div class="thumbnail">
+				<img src="http://placehold.it/210x140" alt>
+				<div class="caption">
+					<p class="lead">Alimentos Saludables</p>
+					<p>Lista de alimentos que son saludables para ti.</p>
+					<p>
+						<a href="/docs/alimentosSaludables.pdf" class="btn btn-primary">Ver</a>
+					</p>
+				</div>
+			</div>
+		</li>
+		<li class="span5">
+			<div class="thumbnail">
+				<img src="http://placehold.it/210x140" alt>
+				<div class="caption">
+					<p class="lead">Piramide Actividad Física</p>
+					<p>Conoce la pirámide y mejora tus hábitos.</p>
+					<p>
+						<a href="/img/piramide.jpg" target="piramide" class="btn btn-primary">Ver</a>
+					</p>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
 {% endblock content %}

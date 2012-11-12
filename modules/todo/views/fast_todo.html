@@ -1,0 +1,16 @@
+{% extends "../../../templates/main_template.html" %}
+{% block css_requires %}
+<link type="text/css" href="/css/todo.css" rel="stylesheet" media="screen" />
+{% endblock %}
+{% block content %}
+<h1>Nuevo compromiso</h1>
+<p>Después de algunas preguntas de trivia, no te gustaría poner un nuevo compromiso?</p>
+<form action="" method="post">
+	<div id="compromiseBox">
+		<input type="text" id="newCompromise" placeholder="Me comprometo a..." name="newCompromise" />
+		<p><input type="submit" value="Agregar" class="btn btn-primary btn-block"/></p>
+	</div>
+	
+</form>
+
+{% endblock content %}

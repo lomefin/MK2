@@ -31,6 +31,7 @@ from google.appengine.ext import db
 from google.appengine.api import datastore_errors
 from google.appengine.ext.webapp import template
 from model.models import *
+import logging
 
 class MKGAEHandler(webapp.RequestHandler):
 	def __init__(self):
