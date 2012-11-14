@@ -1,24 +1,15 @@
 CACHE MANIFEST
 #updated at 2012-11-14T03:14
-
-NETWORK:
-/trivia/*
-*
-
-
 CACHE:
 /img/logo_large.png
 /img/logo_small.png
 /img/background.png
 /img/bubble_down.png
 /img/bubble_side.png
-/img/plus.png
 /img/piramide.jpg
-
 /js/mootools-core-1.3.1-full-compat.js
 /js/mootools-more-1.3.1.1.js
 /js/jquery142.js
 /js/yibasics.js
-
 /css/bootstrap.min.css
 /css/bootstrap-responsive.min.css
