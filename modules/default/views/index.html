@@ -17,16 +17,16 @@
 {% endblock %}
 {% block content %}
 
-<h1 class="menuContainerElement">¡Bienvenido!</h1>
-<p>Este es tu sitio <img src="/img/logo_small.png" alt="MeKuido">, aquí podrás encontrar ayuda para aprender a combinar mejor tus
-alimentos y tus actividades. Así podrás fortalecer tu salud.</p>
-<p>Te invitamos a revisar cada una de las secciones para que conozcas aún más lo que puedes hacer
-para mantenerte en óptimas condiciones...¡¡¡ADELANTE!!!</p>
 
-<div style="margin-bottom:50px"></div>
-{% if imc_calc.status %}
-<div style="border:1px solid black; padding:10px;">
-Tu Índice de Masa Corporal (IMC) es <strong>{{imc_calc.value|stringformat:"2.2f"}}</strong>, eso significa que estas en condición <strong>{{imc_calc.status|title}}</strong>.
+
+<div id="welcome_message">
+{%if welcome_message%}
+	<h1>{{welcome_message.title}}</h1>
+	<p>{{welcome_message.body}}</p>
+{%else %}
+	<h1>¡Bienvenido!</h1>
+	<p>Este es tu sitio <img src="/img/logo_small.png" alt="MeKuido">, aquí podrás encontrar ayuda para aprender a combinar mejor tus alimentos y tus actividades. Así podrás fortalecer tu salud.</p>
+	<p>Te invitamos a revisar cada una de las secciones para que conozcas aún más lo que puedes hacer para mantenerte en óptimas condiciones...¡¡¡ADELANTE!!!</p> 
+{%endif%}
 </div>
-{% endif %}
 {% endblock content %}

@@ -1,0 +1,53 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+<section id="message_list">
+  <div class="page-header">
+    <h1>Mensajes de Bienvenida</h1>
+  </div>
+{% if messages %}
+	{% for m in messages%}
+		<h2>{{m.title}} 
+        {%if m.is_active%} 
+          <span class="label label-info">Activo</span> 
+          <a href="/admin/welcome_messages/{{m.key}}/toggle" class="btn btn-mini btn-warning">Desactivar</a>
+        {% else %}
+          <a href="/admin/welcome_messages/{{m.key}}/toggle" class="btn btn-mini ">Reactivar</a>
+        {% endif %}
+          <a href="/admin/welcome_messages/{{m.key}}/remove" class="btn btn-mini btn-danger">Eliminar</a>
+    </h2>
+    <blockquote>
+		  <p>{{m.body}}</p>
+    </blockquote>
+	{% endfor %}
+{% else %}
+	<p>No hay mensajes en el sistema</p>
+{% endif %}
+</section>
+<section id="new_message">
+  <form method="post" class="form-horizontal">
+    <fieldset>
+      <legend>Nuevo mensaje de bienvenida</legend>
+      <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Nota</strong> El mensaje que cree quedará automáticamente activo dentro de MeKuido.
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="title">Título</label>
+        <div class="controls">
+          <input type="text" name="title" class="input-xxlarge" placeholder="Ingrese el título del mensaje" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="body">Cuerpo del mensaje</label>
+        <div class="controls">
+          <textarea name="body" class="input-xxlarge" rows="4" placeholder="Escriba el cuerpo del mensaje."></textarea>
+        </div>
+      </div>
+
+      <input type="submit" value="Crear Mensaje" class="btn btn-primary" />
+    </fieldset>
+  </form>
+</section>
+{% endblock content %}
+
+_

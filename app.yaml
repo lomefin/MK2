@@ -48,9 +48,14 @@ handlers:
 
 #- url: /trivia/.*
 #  script: modules/trivia/trivia.py  
+- url: /cache.manifest
+  static_files: web/manifests/manifest.appcache
+  mime_type: text/cache-manifest
+  upload: web/manifests/manifest.appcache
 
 - url: /static/(.*)
   script: modules/static/static.py
+
 
 
   

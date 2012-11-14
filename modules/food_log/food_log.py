@@ -18,10 +18,6 @@ import cgi
 import datetime
 import os
 import lib
-#import controller.sessions.SessionManager
-#from controller.appengine_utilities.sessions import Session
-#from controller.appengine_utilities.flash import Flash
-#from controller.appengine_utilities.cache import Cache
 from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
@@ -60,10 +56,6 @@ class FoodLogIndexHandler(mkhandler.MKHandler):
 		dinner.food_list = MKFoodLogElement.all().order('name')
 		snack.food_list = MKFoodLogElement.all().order('name')
 		
-		#bfast.food_list = MKFoodLogElement.all().filter('serves_breakfast = ', True)
-		#lunch.food_list = MKFoodLogElement.all().filter('serves_lunch = ', True)
-		#dinner.food_list = MKFoodLogElement.all().filter('serves_dinner = ', True)
-		#snack.food_list = MKFoodLogElement.all().filter('serves_snack = ', True)
 		
 		food_times = [bfast,lunch,dinner,snack]
 		kid_data = ''

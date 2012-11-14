@@ -161,3 +161,11 @@ class MKMooreResult(MKModel):
 	item12 = db.IntegerProperty(default=0)
 	item13 = db.IntegerProperty(default=0)
 	item17 = db.IntegerProperty(default=0)
+
+class MKWelcomeMessage(MKModel):
+	title = db.StringProperty()
+	body = db.TextProperty()
+
+class MKConfig(MKModel):
+	name = db.StringProperty()
+	value = db.StringProperty()
