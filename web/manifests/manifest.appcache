@@ -1,5 +1,12 @@
 CACHE MANIFEST
-#updated at 2012-11-14T12:36
+#updated at 2012-11-14T03:14
+
+NETWORK:
+/trivia/*
+*
+
+
+CACHE:
 /img/logo_large.png
 /img/logo_small.png
 /img/background.png

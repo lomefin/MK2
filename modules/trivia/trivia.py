@@ -52,13 +52,15 @@ class TriviaIndexHandler(mkhandler.MKHandler):
 	
 	def user_has_questions_remaining(self):
 		selected_question = db.Query(MKTriviaQuestion).order('last_displayed').get()
+		if not selected_question:
+			return None
 		selected_question.last_displayed = datetime.datetime.now()
 		selected_question.put()
 		
 		return selected_question
 	
 	def internal_get(self):
-	
+		values = {}
 		trivias_answered = 0
 		if(self.session and self.session.has_key("TRIVIAS_ANSWERED")):
 			trivias_answered = self.session["TRIVIAS_ANSWERED"]
@@ -70,9 +72,11 @@ class TriviaIndexHandler(mkhandler.MKHandler):
 		
 		flash = ''
 		if not next_question:
-			kid_face = self.current_student_user.student_avatar.sex + "-" + self.current_student_user.student_avatar.prefix + "-ok"
-			values = { 'kid_face': kid_face}
-		
+			try:
+				kid_face = self.current_student_user.student_avatar.sex + "-" + self.current_student_user.student_avatar.prefix + "-ok"
+				values = { 'kid_face': kid_face}
+			except:
+				pass
 			self.render('notrivia', template_values=values)
 			return
 		
