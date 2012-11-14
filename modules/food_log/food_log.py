@@ -38,30 +38,14 @@ class FoodLogIndexHandler(mkhandler.MKHandler):
 	
 	def internal_get(self):
 		
-		food_time_list = { '1' : "Desayuno" , '2' : "Almuerzo" , '4': 'Once/Cena', '8':'Colación'}
-		
-		snack = FoodTime()
-		dinner = FoodTime()
-		lunch = FoodTime()
-		bfast = FoodTime()
-		
-		snack.name = "Colacion"
-		dinner.name = "Once/Cena"
-		lunch.name = "Almuerzo"
-		bfast.name = "Desayuno"
+		food_items = MKFoodLogElement.all().order('name')
 		
 		
-		bfast.food_list = MKFoodLogElement.all().order('name')
-		lunch.food_list = MKFoodLogElement.all().order('name')
-		dinner.food_list = MKFoodLogElement.all().order('name')
-		snack.food_list = MKFoodLogElement.all().order('name')
 		
-		
-		food_times = [bfast,lunch,dinner,snack]
 		kid_data = ''
 		if self.current_student_user and self.current_student_user.student_avatar:
 		 	kid_data = self.current_student_user.student_avatar.sex + "-" + self.current_student_user.student_avatar.prefix + "-normal"
-		values = { 'food_times' : food_times , 'kid_data' : kid_data , 'show_kid': True} 
+		values = { 'food_items' : food_items , 'kid_data' : kid_data , 'show_kid': True} 
 		self.render('index',template_values=values)
 		#self.base_auth()
 		#self.get_internal()

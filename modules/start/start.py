@@ -43,20 +43,15 @@ class DefaultHandler(mkhandler.MKHandler):
 		years = range(1994,2005)
 		values = { 'hide_menu' : 'hide','days':days,'months':months,'years':years}
 		self.render('first_time',template_values=values)
-		#self.base_auth()
-		#self.get_internal()
-		#user_logout = users.create_logout_url("/eventos/")
-		#self.response.out.write("<a href=\"%s\">Logout</a>." %user_logout)
+
 	def internal_post(self):
 		
 		self.current_student_user.student_weight = float(self.request.get('weight'))
 		self.current_student_user.student_height = float(self.request.get('height'))
 		self.current_student_user.student_birth_date = datetime.datetime(*time.strptime(self.request.get('birth_date'), "%d/%m/%Y")[0:5])
 		self.current_student_user.student_gender = self.request.get('sex')
-		
-		self.current_student_user.non_adults_in_house  = int(self.request.get('people_under_18'))
-		self.current_student_user.adult_people_in_house = int(self.request.get('people_over_18'))
 		self.current_student_user.has_started = True
+		
 		self.current_student_user.put()
 		self.update_session()
 		time.sleep(2)
