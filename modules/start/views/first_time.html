@@ -29,7 +29,7 @@
 </script>
 {% endblock js_activities%}
 {% block content %}
-<div class="row-fluid">
+
     <h1>Bienvenido!</h1>
     <p>Hola {{name}}! Antes de comenzar, necesitamos que me des algunos datos tuyos por favor.</p>
     <form method="post" action="/start/" class="form-horizontal" name="form_first_time" id="form_first_time">
@@ -85,5 +85,5 @@
             <input type="submit" class="validate['submit'] btn btn-primary btn-block" value="Ingresar">
         </div>
     </form>
-</div>
+
 {% endblock content %}

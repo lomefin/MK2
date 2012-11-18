@@ -4,20 +4,32 @@
 {% endblock %}
 
 {% block content %}
-<h1>La Trivia MeKuido</h1>
 <div class="row-fluid">
-	<h2 id="question" >{{question.question_text}}?</h2>
+  <h1>La Trivia MeKuido</h1>
 </div>
 
+<div class="row-fluid">
+	<div class="span10 offset1" style="background: rgba(250,250,250,0.8)">
+		<blockquote>
+			<p class="lead">&iquest;{{question.question_text}}?</p>
+		</blockquote>
+	</div>
+</div>
+<div id="possible_answers" class="row-fluid"><div class="span10"></div><div class="span2"></div></div>
 <div id="possible_answers" class="row-fluid">
-	
+	<div class="span10 offset1">
+
 	{% for pa in question.possible_answers %}
-	<form action="/trivia/answer/" method="post" id="triviaForm">
-		<input type="hidden" name="triviaQuestion" value="{{question.key.id}}"/>
-		<input type="hidden" name="triviaAnswer" id="triviaAnswer" value="{{pa.key.id}}"/>
-		<input type="submit" value="{{pa.possible_answer_text}}" class="btn btn-success btn-block" />
-	</form>
+
+		<form action="/trivia/answer/" method="post" id="triviaForm">
+			<input type="hidden" name="triviaQuestion" value="{{question.key.id}}"/>
+			<input type="hidden" name="triviaAnswer" id="triviaAnswer" value="{{pa.key.id}}"/>
+			<input type="submit" value="{{pa.possible_answer_text}}" class="btn btn-success btn-block" style="height: 50px; font-size: larger;" />
+		</form>
+
 	{% endfor %}
+
+	</div>
 </div>
 
 <!--input type="hidden" name="triviaAnswer" id="triviaAnswer" value=""/>

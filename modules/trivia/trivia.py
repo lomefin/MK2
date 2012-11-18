@@ -104,12 +104,12 @@ class TriviaAnswerHandler(mkhandler.MKHandler):
 		
 		#result_icon = 'ok'
 		
-		feedback = question_answer.question.trivia.default_wrong_feedback
+		feedback = "No le acertaste!"
 		result_feedBack = ""
 		if(question_answer.is_correct):
 			result_icon = 'ok'
 			result_feedback = 'Correcta'
-			feedback = question_answer.question.trivia.default_correct_feedback
+			feedback = "Correcto!"
 		else:
 			result_feedback = 'Incorrecta'
 		if(question_answer.feedback_text):
@@ -127,7 +127,7 @@ class TriviaAnswerHandler(mkhandler.MKHandler):
 				kid_face = self.current_student_user.student_avatar.sex + "-" + self.current_student_user.student_avatar.prefix + "-ok"
 		values = { 'bubble_data' : 	question.phrase,'feedback' : feedback, 'result_feedback' : result_feedback,
 					'flash' : self.flash , 'answer': answer, 'kid_data' : kid_data, 'kid_face' :kid_face}
-		
+		values.update({'question':question})
 		self.render('answer', template_values=values)
 
 def main():

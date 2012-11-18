@@ -25,8 +25,39 @@
 	<p>{{welcome_message.body}}</p>
 {%else %}
 	<h1>¡Bienvenido!</h1>
-	<p>Este es tu sitio <img src="/img/logo_small.png" alt="MeKuido">, aquí podrás encontrar ayuda para aprender a combinar mejor tus alimentos y tus actividades. Así podrás fortalecer tu salud.</p>
+	<p>Este es tu sitio <img src="/img/logo_small.png" height="20px" alt="MeKuido">, aquí podrás encontrar ayuda para aprender a combinar mejor tus alimentos y tus actividades. Así podrás fortalecer tu salud.</p>
 	<p>Te invitamos a revisar cada una de las secciones para que conozcas aún más lo que puedes hacer para mantenerte en óptimas condiciones...¡¡¡ADELANTE!!!</p> 
+	
+	<ul class="thumbnails">
+	  <li class="span4">
+	    <div class="thumbnail">
+	      <div id="food_log_menu" class="menuContainerElement"><div class="tk-salsbury"><a href="/food_log/">¿Qué Comí?</a></div></div>
+	      <h3>Que comí?</h3>
+	      <p>Aquí puedes anotar que es lo que comiste ayer y asi podrás ver que tan sano te estás alimentando.</p>
+	    </div>
+	  </li>
+	  <li class="span4">
+	    <div class="thumbnail">
+	      <div id="trivia_menu" class="menuContainerElement"><div><a href="/trivia/">Trivia</a></div></div>
+	      <h3>La Trivia</h3>
+	      <p>Aqúi podrás responder preguntas sobre alimentación saludable.</p>
+	    </div>
+	  </li>
+	  <li class="span4">
+	    <div class="thumbnail">
+	      <div id="todo_menu" class="menuContainerElement"><div><a href="/todo/">Mi Misión</a></div></div>
+	      <h3>Mis metas</h3>
+	      <p>Para lograr ser una persona más sana debes ponerte metas e ir cumpliendolas!</p>
+	    </div>
+	  </li>
+	  <li class="span4">
+	    <div class="thumbnail">
+	      <div id="more_menu" class="menuContainerElement"><div><a href="/static/others">Ayudas</a></div></div>
+	      <h3>Ayuda</h3>
+	      <p>Si necesitas saber más de algún tema, revisa la sección de ayuda!</p>
+	    </div>
+	  </li>
+	</ul>
 {%endif%}
 </div>
 {% endblock content %}
