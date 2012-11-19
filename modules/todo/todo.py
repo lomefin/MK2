@@ -80,16 +80,9 @@ class FastTodoHandler(mkhandler.MKHandler):
 	def internal_get(self):
 	
 		account = self.current_student_user.student_account
-		goals = MKGoal.all().filter('created_by = ', account).order('creation_date')
-		accomplished = []
-		pending = []
-		for goal in goals:
-			if goal.date_completed:
-				accomplished.append(goal)
-			else:
-				pending.append(goal)
-	
-		values = {'accomplished' : accomplished, 'pending' : pending}
+		accomplished = account.goals.filter('date_completed >',0).order('date_completed')
+		
+		values = {'accomplished' : accomplished}
 		self.render('fast_todo', template_values=values)
 		
 		#self.base_auth()

@@ -39,6 +39,7 @@ class AddQuestionHandler(mkhandler.MKGAEHandler):
 		return os.path.dirname(__file__)
 	
 	def get(self, second_argument):
+		self.auth_check()
 		self.internal_get(second_argument)
 	
 	def internal_get(self,trivia_code):
@@ -46,6 +47,7 @@ class AddQuestionHandler(mkhandler.MKGAEHandler):
 			'range3' : range(3),
 			'trivia_code' : trivia_code,
 		}
+		self.set('trivia', MKTrivia.get_by_id(int(trivia_code)))
 		self.render('add_trivia_question',template_values=values)
 		#self.base_auth()
 		#self.get_internal()
@@ -79,19 +81,53 @@ class AddQuestionHandler(mkhandler.MKGAEHandler):
 			possible_answer.is_correct = self.request.get('correct_alternative'+str(i)) == "True"
 			possible_answer.question = question
 			possible_answer.put()
-		values = { 
-					'flash' : self.flash,
-					'trivia_code' : trivia_code
-				}
-		self.render('added_trivia_question',template_values=values);
+
+		self.set_flash('Pregunta agregada a ' + trivia.name)
+		self.redirect('/admin/trivia/'+str(trivia_code)+'/listQuestions')
+
+class ListTriviaQuestionsHandler(mkhandler.MKGAEHandler):
+	def base_directory(self):
+		return os.path.dirname(__file__)
+	
+	def get(self, second_argument):
+		self.auth_check()
+		self.internal_get(second_argument)
+
+	def internal_get(self,trivia_code):
+		trivia = MKTrivia.get_by_id(int(trivia_code))
+		questions = trivia.questions
+		self.set('trivia',trivia)
+		self.set('questions',questions)
+		self.render('trivia_list')
+
 class ListTriviaHandler(mkhandler.MKGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
-		
+	
 	def internal_get(self):
-		questions = MKTriviaQuestion.all()
-		
-		self.render('trivia_list', template_values={'questions':questions})
+		trivias = MKTrivia.all()
+		self.set('trivias',trivias)
+		self.render('list_trivia')
+
+class RemoveQuestionHandler(mkhandler.MKGAEHandler):
+	def base_directory(self):
+		return os.path.dirname(__file__)
+	def get(self,question_code):
+		self.auth_check()
+		self.internal_get(question_code)
+
+	def internal_get(self,question_code):
+		question = MKTriviaQuestion.get_by_id(int(question_code))
+		trivia = question.trivia
+		try:
+			db.delete(question.possible_answers)
+			db.delete(question.answers)
+			question.delete()
+			self.set_flash('La pregunta ha sido eliminada')
+		except:
+			self.set_flash('Hubo un problema eliminando la pregunta', flash_type='error')
+		self.redirect('/admin/trivia/'+str(trivia.key().id())+'/listQuestions')
+
 
 class AddTriviaHandler(mkhandler.MKGAEHandler):
 	
@@ -100,7 +136,9 @@ class AddTriviaHandler(mkhandler.MKGAEHandler):
 	
 	def internal_get(self):
 	 
-		self.render('add_trivia')
+	 	existing_trivia = MKTrivia.all()
+	 	values = {'existing_trivia':existing_trivia}
+		self.render('add_trivia', template_values=values)
 		#self.base_auth()
 		#self.get_internal()
 		#user_logout = users.create_logout_url("/eventos/")
@@ -119,7 +157,7 @@ class AddTriviaHandler(mkhandler.MKGAEHandler):
 			return 
 		
 		trivia = MKTrivia()
-		trivia.trivia_name = trivia_name
+		trivia.name = trivia_name
 		trivia.default_general_feedback = self.request.get('default_general_feedback')
 		trivia.default_correct_feedback  = self.request.get('default_correct_feedback')
 		trivia.default_wrong_feedback  = self.request.get('default_wrong_feedback')
@@ -127,15 +165,17 @@ class AddTriviaHandler(mkhandler.MKGAEHandler):
 		values = { 
 				'trivia_code' : str(trivia.key().id())
 				}
-		self.render('added_trivia',template_values=values)
+		self.set_flash('Nueva trivia '+ trivia.name + ' ha sido creada. Por favor, agregale preguntas.')
+		self.redirect('/admin/trivia/'+str(trivia.key().id())+'/addQuestion')
 		
 
 
 def main():
-  application = webapp.WSGIApplication([('/admin/trivia/(\d*?)/addQuestion', AddQuestionHandler),
+  application = webapp.WSGIApplication([('/admin/trivia/questions/(\d*?)/remove', RemoveQuestionHandler),
+  										('/admin/trivia/(\d*?)/addQuestion', AddQuestionHandler),
 										('/admin/trivia/add',AddTriviaHandler),
-										('/admin/trivia/listQuestions',ListTriviaHandler)
-										],
+										('/admin/trivia/(\d*?)/listQuestions',ListTriviaQuestionsHandler),
+										('/admin/trivia/',ListTriviaHandler)],
                                        debug=True)
   util.run_wsgi_app(application)
 

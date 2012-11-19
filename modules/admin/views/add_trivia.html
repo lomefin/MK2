@@ -1,41 +1,68 @@
 {% extends "../../../templates/admin_template.html" %}
 {% block content %}
+<div class="row">
+	<h1>Crear Trivia</h1>
+</div>
+<div class="row">
+	<div class="span8">
+		<form method="post" action="add" class="form-horizontal">
+			<fieldset><legend>Datos de la Trivia</legend>
+				<div class="control-group">
+					<label class="control-label" for="trivia_name">Nombre de la trivia</label>
+				    <div class="controls">
+				    	<input type="text" id="trivia_name" name="trivia_name" placeholder="Nombre de trivia" required="required">
+				    </div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="default_general_feedback">Mensaje feedback general</label>
+				    <div class="controls">
+				    	<input type="text" id="default_general_feedback" name="default_general_feedback" class="input-xxlarge" placeholder="Mensaje feedback general" required="required">
+				    	<span class="help-block">Mensaje que aparecerá por defecto a los usuarios en el campo de feedback.</span>
+				    </div>
+				    
+				</div>
 
-<h1>Crear Trivia</h1>
+				<div class="control-group">
+					<label class="control-label" for="default_correct_feedback">Mensaje respuesta correcta</label>
+				    <div class="controls">
+				    	<input type="text" id="default_correct_feedback" name="default_correct_feedback" class="input-xxlarge" placeholder="Mensaje respuesta correcta" required="required">
+				    	<span class="help-block">Mensaje que aparecerá por defecto a los usuarios cuando acierten con su respuesta.</span>
+				    </div>
+				    
+				</div>
 
-<form method="post" action="add">
-	<h2>Datos de la Trivia</h2>
-	<table border="0">
-		<tr>
-			<th>Nombre de la trivia:</th>
-			<td>
-				<input type="text" name="trivia_name" />
-			</td>
-		</tr>
-		<tr>
-			<th>Mensaje respuesta correcta</th>
-			<td>
-				<input type="text" name="default_correct_feedback" />
-			</td>
-		</tr>	
-		<tr>
-			<th>Mensaje feedback general</th>	
-			<td>
-				<input type="text" name="default_general_feedback" />
-			</td>
-		</tr>
-		<tr>
-			<th>Mensaje respuesta incorrecta</th>
-			<td>
-				<input type="text" name="default_wrong_feedback" />
-			</td>
-		</tr>
-		<tr><td colspan="2"><input type="submit" value="Crear" /></td></tr>
-	</table>
-	
-	
-</form>
+				<div class="control-group">
+					<label class="control-label" for="default_wrong_feedback">Mensaje respuesta incorrecta</label>
+				    <div class="controls">
+				    	<input type="text" id="default_wrong_feedback" name="default_wrong_feedback" class="input-xxlarge" placeholder="Mensaje respuesta incorrecta" required="required">
+				    	<span class="help-block">Mensaje que aparecerá por defecto a los usuarios cuando no acierten.</span>
+				    </div>
 
+				</div>
+				
+				<div class="form-actions">
+				  	<button type="submit" class="btn btn-primary">Crear</button>
+				  	<button type="reset" class="btn">Cancel</button>
+				</div>
+			</fieldset>
+			
+		</form>
+	</div>
+	<div class="span4">
+		{%if existing_trivia %}
+		<h2>Trivias existentes</h2>
+		<ul>
+			{%for trivia in existing_trivia %}
+			<li>{{trivia.name}} 
+				<a href="/admin/trivia/{{trivia.key.id}}/listQuestions" class="btn btn-mini">Preguntas</a>
+				<a href="/admin/trivia/{{trivia.key.id}}/addQuestion" class="btn btn-mini btn-primary">Agregar</a>
+			</li>
+			{%endfor%}
+		</ul>
+		{% endif %}
+	</div>
+</div>
 
 {% endblock content %}
 

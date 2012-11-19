@@ -39,6 +39,7 @@ class MKGAEHandler(webapp.RequestHandler):
 		self.flash = None
 		self.flash_type = 'normalFlash'
 		self.log_count = 1
+		self.template_values = {} 
 		#self.auth_check()
 	
 	def set_flash(self,flash,flash_type='normalFlash'):
@@ -46,14 +47,23 @@ class MKGAEHandler(webapp.RequestHandler):
 			self.session['flash'] = flash
 			self.session['flash_type'] = flash_type
 	
+	def set(self, name, value):
+		self.template_values.update({name: value})
+
 	def read_flash(self):
+		flash = {}
 		if(self.session):
 			if(self.session.has_key('flash')):
+				flash.update({
+					'flash' 		: self.session.pop('flash',default=None),
+					'flash_type' 	: self.session.pop('flash_type',default='info')	 
+				})
 				self.flash = self.session.pop('flash',default=None)
-				self.flash_type = self.session.pop('flash_type',default='normalFlash')	
+				self.flash_type = self.session.pop('flash_type',default='info')	
+
 		else:
 			self.wr('NO SESSION')
-			
+		return flash	
 		
 	def auth_check(self):
 		user = users.get_current_user()
@@ -90,27 +100,21 @@ class MKGAEHandler(webapp.RequestHandler):
 			self.redirect(users.create_login_url(self.request.uri))
         
 			
-	def render(self,pagename,template_values=None):
+	def render(self,pagename,template_values={}):
 		self.logout_url = '/admin/unlog/'
 		self.user_mail = ''
 		if users.get_current_user():
 			self.user_mail = users.get_current_user().email()
 		
-		if not template_values:
-			template_values = {'user_mail':self.user_mail,'logout_url': self.logout_url}
-		else:
-			template_values['logout_url'] = self.logout_url
-			template_values['user_mail'] = self.user_mail
+		template_values.update(self.template_values)
+		template_values.update({'user_mail':self.user_mail,'logout_url': self.logout_url})
 		try:
 			if self.current_account is not None:
 				template_values['current_account'] = self.current_account
 		except:
 			pass
 		try:
-			self.read_flash()
-			
-			template_values['flash'] = self.flash
-			template_values['flash_type'] = self.flash_type
+			template_values.update(self.read_flash())
 		except:
 			pass
 			

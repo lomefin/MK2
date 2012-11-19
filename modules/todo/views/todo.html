@@ -1,14 +1,14 @@
 ﻿{% extends "../../../templates/main_template.html" %}
 {% block content %}
 <div class="row-fluid">
-	<h1>Mis compromisos</h1>
+	<h1>Mis metas</h1>
 	<p>Estamos seguros que después de revisar lo que comiste y los mensajes
 	de la trivia, tu capacidad de reflexión te ayudará a comprometerte con
 	algunos cambios. ¡Recuerda ser realista!</p>
 </div>
 <div class="row-fluid">
 	<div class="span6">
-		<h2>Nuevo compromiso</h2>
+		<h2>Nueva meta</h2>
 		<form action="" method="post">
 			<div id="compromiseBox">
 				<input type="text" id="newCompromise" placeholder="Me comprometo a..." name="newCompromise" class="input-block-level" />
@@ -20,8 +20,8 @@
 	<div class="span6">
 		{% if pending %}
 		<div>
-			<h2>Mis compromisos pendientes</h2>
-			<p>Cuando cumplas un compromiso, hazle click!</p>
+			<h2>Mis metas pendientes</h2>
+			<p>Cuando cumplas una meta, hazle click!</p>
 			<div id="pendingCompromises" class="goalList">
 				<ul class="unstyled">
 					{% for goal in pending %}
@@ -33,7 +33,7 @@
 		{% endif %}
 		{% if accomplished %}
 		<div>
-			<h2>Mis compromisos cumplidos</h2>
+			<h2>Mis metas cumplidas</h2>
 			<div id="accomplishedCompromises" class="goalList">
 				<ul class="unstyled">
 					{% for goal in accomplished %}

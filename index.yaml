@@ -50,6 +50,11 @@ indexes:
   - name: answered_by
   - name: creation_date
 
+- kind: MKTriviaQuestion
+  properties:
+  - name: trivia
+  - name: last_displayed
+
 - kind: MKWeek
   properties:
   - name: school

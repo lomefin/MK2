@@ -37,21 +37,9 @@ class TriviaIndexHandler(mkhandler.MKHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
-	def render_question_or_no_trivia(self):
-		available_questions = 5
-		
-		
-		if(available_questions > 0):
-			self.render('index')
-		else:
-			kid_face = self.current_student_user.student_avatar.sex + "-" + self.current_student_user.student_avatar.prefix + "-ok"
-			values = { 'kid_face': kid_face}
-		
-			self.render('notrivia', template_values=values)
-			
 	
-	def user_has_questions_remaining(self):
-		selected_question = db.Query(MKTriviaQuestion).order('last_displayed').get()
+	def next_question(self):
+		selected_question = MKTrivia.all().filter('name = ','Fantabulosa Trivia').get().questions.order('last_displayed').get()
 		if not selected_question:
 			return None
 		selected_question.last_displayed = datetime.datetime.now()
@@ -61,14 +49,14 @@ class TriviaIndexHandler(mkhandler.MKHandler):
 	
 	def internal_get(self):
 		values = {}
-		trivias_answered = 0
+		trivias_answered = 1
 		if(self.session and self.session.has_key("TRIVIAS_ANSWERED")):
 			trivias_answered = self.session["TRIVIAS_ANSWERED"]
-			self.session["TRIVIAS_ANSWERED"] = trivias_answered + 1
-			if trivias_answered % 5 == 0:
-				self.redirect('/todo/fast')
+		self.session["TRIVIAS_ANSWERED"] = trivias_answered + 1
+		if trivias_answered % 5 == 0:
+			self.redirect('/todo/fast')
 
-		next_question = self.user_has_questions_remaining()
+		next_question = self.next_question()
 		
 		flash = ''
 		if not next_question:

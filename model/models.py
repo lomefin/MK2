@@ -58,21 +58,20 @@ class MKWeek(db.Model):
 	week_mode = WeekModeProperty()
 	
 class MKStudent(MKModel):
-	student_account			= db.ReferenceProperty(MKAccount)
-	adult_people_in_house 	= db.IntegerProperty()
-	non_adults_in_house 	= db.IntegerProperty()
-	student_height			= db.FloatProperty()
-	student_weight 			= db.FloatProperty()
-	student_gender 			= GenderProperty()
+	student_account				= db.ReferenceProperty(MKAccount)
+	adult_people_in_house 		= db.IntegerProperty()
+	non_adults_in_house 		= db.IntegerProperty()
+	student_height				= db.FloatProperty()
+	student_weight 				= db.FloatProperty()
+	student_gender 				= GenderProperty()
 	student_nutritional_status	= db.StringProperty(default=None)
-	student_birth_date 		= db.DateTimeProperty()
-	student_avatar 			= db.ReferenceProperty(MKAvatar,collection_name='avatar_users')
-	attending_class			= db.ReferenceProperty(MKClass,collection_name='class_students')
-	has_started 			= db.BooleanProperty()
+	student_birth_date 			= db.DateTimeProperty()
+	student_avatar 				= db.ReferenceProperty(MKAvatar,collection_name='avatar_users')
+	attending_class				= db.ReferenceProperty(MKClass,collection_name='class_students')
+	has_started 				= db.BooleanProperty()
 
 class MKTrivia(MKModel):
-	created_by = db.ReferenceProperty(MKAccount)
-	trivia_name		= db.StringProperty()
+	name		= db.StringProperty()
 	default_general_feedback = db.StringProperty()
 	default_correct_feedback  = db.StringProperty()
 	default_wrong_feedback  = db.StringProperty()
@@ -93,8 +92,8 @@ class MKTriviaPossibleAnswer(MKModel):
 	
 class MKTriviaAnswer(MKModel):
 	answered_by = db.ReferenceProperty(MKStudent,collection_name="trivia_answers")
-	question = db.ReferenceProperty(MKTriviaQuestion)
-	answered = db.ReferenceProperty(MKTriviaPossibleAnswer)
+	question = db.ReferenceProperty(MKTriviaQuestion, collection_name="answers")
+	answered = db.ReferenceProperty(MKTriviaPossibleAnswer, collection_name="responses")
 	
 class MKFoodLogElement(MKModel):
 	created_by = db.ReferenceProperty(MKAccount)
