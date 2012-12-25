@@ -19,10 +19,7 @@ import datetime
 import os
 import lib
 import time
-#import controller.sessions.SessionManager
-#from controller.appengine_utilities.sessions import Session
-#from controller.appengine_utilities.flash import Flash
-#from controller.appengine_utilities.cache import Cache
+
 from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
@@ -38,6 +35,8 @@ class DefaultHandler(mkhandler.MKHandler):
 		return os.path.dirname(__file__)
 	
 	def internal_get(self):
+		if self.current_student_user.has_started:
+			self.redirect('/start/chooseAvatar')
 		days = range(1,32)
 		months = range(1,13)
 		years = range(1994,2005)
@@ -70,9 +69,14 @@ class AvatarChooseHandler(mkhandler.MKHandler):
 		
 		values = { 'hide_menu' : 'hide' , 'avatar_list' : avatar_list}
 		self.render('choose_avatar',template_values=values)
+
+class AvatarChosenHandler(mkhandler.MKHandler):
+	def get(self,avatar_prefix):
+		self.auth_check()
+		self.internal_get(avatar_prefix)
+
+	def internal_get(self,avatar_prefix):
 		
-	def internal_post(self):
-		avatar_prefix = self.request.get('selected_avatar')
 		avatar = MKAvatar.all().filter('sex = ', str(self.current_student_user.student_gender) == 'masculino').filter('prefix =',avatar_prefix).get()
 		self.current_student_user.student_avatar = avatar
 		
@@ -82,7 +86,9 @@ class AvatarChooseHandler(mkhandler.MKHandler):
 
 def main():
   application = webapp.WSGIApplication([('/start/', DefaultHandler),
-										('/start/chooseAvatar', AvatarChooseHandler)],
+										('/start/(\D*?)/select',AvatarChosenHandler),
+										('/start/chooseAvatar', AvatarChooseHandler),
+										],
                                        debug=True)
   util.run_wsgi_app(application)
 

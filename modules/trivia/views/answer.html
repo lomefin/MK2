@@ -1,70 +1,26 @@
 ﻿{% extends "../../../templates/main_template.html" %}
 {% block css_requires %}
-<link type="text/css" href="/css/trivia.css" rel="stylesheet" media="screen" />
+
 {% endblock %}
 {% block js_activities %}
+
 <script type="text/javascript">
-	/*
-	var myFx = new Fx.Tween('bubble_container', {
-    duration: 'long',
-    transition: 'bounce:out',
-    property: 'opacity'}
-	);
-	var kidFx = new Fx.Tween('kid_container', {
-    duration: 'short',
-    transition: 'bounce:in',
-    property: 'opacity'}
-	);
-	var KidFaceFxFast = new Fx.Tween('kid_face', {
-    duration: 200,
-    transition: 'bounce:in',
-    property: 'opacity'}
-	);
-	var KidFaceFxSlow = new Fx.Tween('kid_face', {
-    duration: 500,
-    transition: 'bounce:in',
-    property: 'opacity'}
-	);
-	var ResultTextFx = new Fx.Tween('kid_face', {
-    duration: 300,
-    transition: 'bounce:in',
-    property: 'fontSize'}
-	);
-	var btnFx = new Fx.Tween('btnReady',{
-	duration: 'long',
-	transition: 'bounce:out',
-	property: 'opacity'}
-	);
-	window.addEvent('domready',function(){
-		setTimeout('showKid()',4000);
-		setTimeout('hideKidFace()',3700);
-		setTimeout('showButton()',7700);
-		{% if kid_face %} KidFaceFxSlow.start(0,1);{% endif %}
-		ResultTextFx.start(0,30);
-		});
-	var showKid = function(){kidFx.start(0,1); myFx.start(0,1);};
-	var hideKidFace = function(){KidFaceFxFast.start(1,0);};
-	var showButton = function(){btnFx.start(0,1);};
-	*/
-</script>
-<script type="text/javascript">
-	var next_time = 0;
-	var times = [100,3000,6000,7500,15000];
+	
 	$(function(){
-		console.log("Enter");
-		$(".timed_show").first().show(times[next_time], function showNext() {
-			next_time++;
-		    $(this).next(".timed_show").delay(times[next_time]).show("medium", showNext);
+		$('.timed_show').each(function(idx,item){
+			item = $(item);
+			item.delay(item.data('delay')).show("medium");
 		});
-	});
+	})
 </script>
+
 {% endblock %}
 {% block content %}
 <div class="row-fluid">
   <h1>La Trivia MeKuido</h1>
 </div>
 
-<div class="row-fluid timed_show" id="question_container" style="display:none">
+<div class="row-fluid timed_show" id="question_container" style="display:none" data-delay="100">
 	<div class="span10 offset1" style="background: rgba(250,250,250,0.8)">
 		<p>La respuesta a:</p>
 		<blockquote>
@@ -73,26 +29,33 @@
 	</div>
 </div>
 
-<div class="row-fluid timed_show" id="question_drama" style="display:none">
-	<div class="span2 offset5">
-		<h2>&hellip;está&hellip;</h2>
+<div class="row-fluid timed_show" id="question_drama" style="display:none" data-delay="3000">
+	<div class="span4 offset5">
+		<h2>&hellip;&nbsp;está &hellip;</h2>
 	</div>
 </div>
 
-<div class="row-fluid timed_show" id="answerContainer" style="display:none"> 
+<div class="row-fluid timed_show" id="answerContainer" style="display:none" data-delay="9000"> 
 	<div class="span7 offset1">
-		<div id="answer">{{result_feedback}}</div>
+		<h1 id="answer" class="result-feedback">{{result_feedback}}</h1>
 		<div id="feedback">{{ feedback }}</div>
 	</div>
 	<div class="span4">
-		{%if kid_face %}<div id="kid_face"><img src="/img/avatars/{{ kid_face }}.png" height="200px" /> </div>{% endif %}
+		{%if kid_face %}<div id="kid_face"><div class="{{ kid_face }}"></div> </div>{% endif %}
 	</div>
 </div>
 
-<div class="row-fluid timed_show" style="display:none">
+<div class="row-fluid timed_show" style="display:none" data-delay="16500">
 	<div class="span4 offset4">
-		<a href="/trivia/" class="btn btn-block btn-primary" id="trivia_continue" >Seguir</a>
+		<a href="/trivia/" class="btn btn-block btn-primary btn-large" id="trivia_continue" >Seguir</a>
 	</div>
 </div>
+
 
 {% endblock content %}
+{% block avatar%}
+	{% if kid_face %}
+	{% else %}
+	{{ block.super }}
+	{%endif%}
+{%endblock avatar%}

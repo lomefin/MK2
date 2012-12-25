@@ -49,8 +49,11 @@ class TodoHandler(mkhandler.MKHandler):
 				accomplished.append(goal)
 			else:
 				pending.append(goal)
-	
-		values = {'accomplished' : accomplished, 'pending' : pending}
+		kid_data = ''
+		if self.current_student_user and self.current_student_user.student_avatar:
+		 	kid_data = self.current_student_user.student_avatar.sex + "-" + self.current_student_user.student_avatar.prefix + "-lean"
+
+		values = {'accomplished' : accomplished, 'pending' : pending, 'kid_data':kid_data}
 		self.render('todo', template_values=values)
 		
 		#self.base_auth()

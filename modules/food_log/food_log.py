@@ -122,16 +122,20 @@ class FoodLogResultHandler(mkhandler.MKHandler):
 		kid_data = ''
 		if self.current_student_user and self.current_student_user.student_avatar:
 		 	kid_data = self.current_student_user.student_avatar.sex + "-" + self.current_student_user.student_avatar.prefix + "-lean"
-		values = { 'range02' : [0,1,2],
-		'analyzer' : analizer,
-		'chart_values':[food_log.total_proteins,food_log.total_fats,food_log.total_carbs,food_log.total_calories],
-		'percentages':
-		  [100*food_log.total_proteins/food_log.total_calories,
-		  100*food_log.total_fats/food_log.total_calories,
-		  100*food_log.total_carbs/food_log.total_calories],
-		'kid_data' : kid_data, 'show_kid': True, 
-		'analysis_result': result,
-		'bubble_data' : result['message'],'bubble_data_class' : result['message_category'], 'bubble_data_image' : result['message_category']} 
+		values = { 
+			'range02' : [0,1,2],
+			'analyzer' : analizer,
+			'chart_values':[food_log.total_proteins,food_log.total_fats,food_log.total_carbs,food_log.total_calories],
+			'percentages':  [	100*food_log.total_proteins/food_log.total_calories,
+		  						100*food_log.total_fats/food_log.total_calories,
+		  						100*food_log.total_carbs/food_log.total_calories],
+			'kid_data' : kid_data, 
+			'show_kid': True, 
+			'analysis_result': result,
+			'bubble_data' : result['message'],
+			'bubble_data_class' : result['message_category'], 
+			'bubble_data_image' : result['message_category']
+		} 
 		self.render('show_results',template_values=values);
 		pass
 	

@@ -2,7 +2,7 @@ application: mekuidohrd
 version: 1
 runtime: python
 api_version: 1
-default_expiration: "5h"
+default_expiration: "10d"
 handlers:
 - url: /css
   static_dir: web/stylesheets

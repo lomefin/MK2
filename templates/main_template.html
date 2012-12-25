@@ -6,6 +6,8 @@
 	<link type="text/css" href="/css/bootstrap.min.css" rel="stylesheet" />
 	<link type="text/css" href="/css/bootstrap-responsive.min.css" rel="stylesheet" />
 	<link type="text/css" href="/css/styles.css" rel="stylesheet" />
+	<link type="text/css" href="/css/sprites.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
 	<!--link type="text/css" href="/css/faces.css" rel="stylesheet" /-->	
 	
 	<!--Custom CSS Requirements-->
@@ -16,21 +18,24 @@
 	<div class="container">
 		<div class="row">
 			<div class="span3">
-				<div class="logo"></div>
+				<a href="/">
+					<div class="logo"></div>
+				</a>
 			</div>
 			<div class="span6 menuContainer">
 				<div class="row-fluid">
 					{% if not hide_menu %}
-					<div id="food_log_menu" class="menuContainerElement"><div class="tk-salsbury"><a href="/food_log/">¿Qué Comí?</a></div></div>
-					<div id="trivia_menu" class="menuContainerElement"><div><a href="/trivia/">Trivia</a></div></div>
-					<div id="todo_menu" class="menuContainerElement"><div><a href="/todo/">Mis Metas</a></div></div>
-					<div id="more_menu" class="menuContainerElement"><div><a href="/static/others">Ayudas</a></div></div>
+					<div id="" class="menuContainerElement food_log_menu"><div><a href="/food_log/">¿Qué Comí?</a></div></div>
+					<div id="" class="menuContainerElement trivia_menu"><div><a href="/trivia/">Trivia</a></div></div>
+					<div id="" class="menuContainerElement todo_menu"><div><a href="/todo/">Mis Metas</a></div></div>
+					<div id="" class="menuContainerElement more_menu"><div><a href="/static/others">Ayudas</a></div></div>
 					{% endif %}
 				</div>
 			</div>
-		    <div class="span3">
-	    		<span style="padding-right:10px">{{current_account.system_login}}</span>
-	    		<a href="/logout">Salir</a>
+		    <div class="span2 offset1">
+		    	<p class="lead">{{current_account.system_login}}</p>
+		    	<a href="/start/" class="btn btn-info btn-block"><i class="icon-user icon-white"></i>Cambiar Avatar </a>
+		    	<a href="/logout" class="btn btn-danger btn-block"> <i class="icon-off icon-white"></i> Desconectarse</a>
 			</div>
 		</div>
 		<div class="row">
@@ -38,7 +43,7 @@
 				{%if flash %}<div class="flash">{{flash}}</div>{% endif %}
 			</div>
 		</div>
-		<div class="row generated-content">
+		<div class="row-fluid generated-content" style="padding-left: 5px">
 			<div class="span11">
 				{% block content %}{{ content }}{% endblock %}
 				{% if message_box %}
@@ -52,16 +57,54 @@
 					</div>
 				</div>
 				{% endif %}
-				<div class="row-fluid"><div class="span1 offset11"><div style="margin: 10px auto;"><img src="/img/logo_small.png" style="max-height:20px;"  /></div></div></div>
+				
+			</div>
+			<div class="span1">
+				<div class="avatar-spacer" ></div>
+				<div class="avatar">
+				{%block avatar%}
+					{% if bubble_data %}
+	                <div class="dialog-placeholder"
+	                    rel="popover"
+	                    data-animation="true"
+	                    data-placement="left"
+	                    data-delay="{show: 300}"
+	                    data-content="{{bubble_data}}"> 
+	                </div>
+	                {% endif %}
+	                {% if kid_data %}
+	                <div class="{{kid_data}} half" ></div>
+	                {% endif %}
+				{%endblock avatar%}
+				</div>
 			</div>
 
 		</div>
-
-		<div class="row" id="preload"> 
-			<div class="span1">FONIS</div>
-			<!--preload-->	
-		</div>
 	</div>
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="span1">
+					<div style="margin: 10px auto;">
+						<img src="/img/logo_small.png" style="max-height:20px;"  />
+					</div>
+				</div>
+				<div class="span9">
+					<p><small>MeKuido.info Intervención del Programa prevención del sobrepeso y de la obesidad en escolares chilenos: Una apuesta a la capacidad emprendedora de los niños. </small></p>
+					<p><small>Financiado por FONIS SA10I20016</small></p>
+					<p><small>Propiedad intelectual equipo investigación <a href="http://www.uc.cl/enfermeria/">Escuela de Enfermería de la Universidad Católica de Chile</a></small></p>
+				</div>
+				<div class="span2">
+					<a href="http://leonardo.luarte.net" class="">
+						Desarrollo: Leonardo Luarte
+					</a>
+					<a href="https://github.com/lomefin/MK2" class="btn btn-inverse">
+						<i class=" icon-globe icon-white"></i> Open Source
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
  
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
@@ -76,7 +119,19 @@
 	<!--Custom Javascript Code Needed-->
 	{% block js_requires %}{% endblock %}
 	{% block js_activities %}{% endblock %}
-	<script type="text/javascript" src="/js/ga.js"></script>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-22601440-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
 	<!--End of Custom Javascript --> 
 </body>
   
