@@ -151,12 +151,12 @@ div
 	
 .menuContainerElement
 {
-	width: 120px;
-	height: 120px;
+	width: 100px;
+	height: 100px;
 	font-family: 'Bangers', cursive;
 	letter-spacing: 2px;
 	line-height: 25px;
-	margin: 10px auto;
+	margin: 7px auto;
 	
 }
 .menuContainerElement div { text-align: center; width: 100%; min-width: 100px;max-width: 120px;}
@@ -171,13 +171,13 @@ div
 {
 	color: black;
 	text-decoration: none;
-	font-size: 22pt;
+	font-size: 18pt;
 }
 .menuContainer a:hover
 {
 	color: grey;
 }
-.food_log_menu:hover, .trivia_menu:hover, .todo_menu:hover, .more_menu:hover
+.food_log_menu:hover, .trivia_menu:hover, .todo_menu:hover, .more_menu:hover, .activity_menu:hover
 {
 	-webkit-transform: rotate(5deg); 
 	-moz-transform: rotate(5deg);	
@@ -195,20 +195,27 @@ div
 {
 	background-color: #A5FF8C;
 	border: 2px solid black;
-	-webkit-transform: rotate(-10deg); 
-	-moz-transform: rotate(-10deg);	
+	-webkit-transform: rotate(10deg); 
+	-moz-transform: rotate(10deg);	
+}
+.activity_menu
+{
+	background-color: #6666FF;
+	border: 2px solid black;
+	-webkit-transform: rotate(-7deg); 
+	-moz-transform: rotate(-7deg);	
 }
 .todo_menu
 {
-	-webkit-transform: rotate(12deg); 
-	-moz-transform: rotate(12deg);	
+	-webkit-transform: rotate(-12deg); 
+	-moz-transform: rotate(-12deg);	
 	background-color: #FFC677;
 	border: 2px solid black;
 }
 .more_menu
 {
-	-webkit-transform: rotate(-8deg); 
-	-moz-transform: rotate(-8deg);	
+	-webkit-transform: rotate(8deg); 
+	-moz-transform: rotate(8deg);	
 	background-color: yellow;
 	border: 2px solid black;
 }
@@ -380,6 +387,7 @@ input[type="submit"]:hover, button[type="button"] a:hover
 	font-family: 'Bangers', cursive;
 	font-size: 48pt;
 	letter-spacing: 4px;
+	line-height: 40pt;
 }
 
 /* Footer
@@ -390,7 +398,6 @@ input[type="submit"]:hover, button[type="button"] a:hover
   padding: 30px 0;
   margin-top: 70px;
   border-top: 1px solid #e5e5e5;
-  background-color: #f5f5f5;
 }
 .footer p {
   margin-bottom: 0;
@@ -413,4 +420,12 @@ input[type="submit"]:hover, button[type="button"] a:hover
 	background-image: -webkit-linear-gradient(top, #5BC0DE, #2F96B4);
 	padding: 10px;
 	border-radius: 5px;
+}
+.modal-body
+{
+	max-height: 700px;
+}
+.modal.fade.in
+{
+	top: 30%;
 }

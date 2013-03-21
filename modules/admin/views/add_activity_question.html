@@ -1,0 +1,109 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+<div class="row">
+	<h1>Crear pregunta para <a href="/admin/trivia/{{trivia.key.id}}/listQuestions">{{trivia.name}}</a></h1>
+</div>
+<div class="row">
+	<div class="span8">
+		<form method="post" action="addQuestion" class="form-horizontal">
+			<h2>Datos de la Pregunta</h2>
+			<div class="control-group">
+				<label class="control-label" for="question_text">Pregunta</label>
+				<div class="controls">
+					<input type="text" class="input-xxlarge" name="question_text" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="feedback_text">Feedback pregunta</label>
+				<div class="controls">
+					<input type="text" name="feedback_text" class="input-xxlarge"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="question_text">Frase</label>
+				<div class="controls">
+					<input type="text" name="phrase_text" class="input-xxlarge"/>
+				</div>
+			</div>
+			<h3>Alternativas</h3>
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Texto alternativa</th>
+						<th><i class="icon-ok"></i></th>
+						<th>Feedback alternativa</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							1
+						</td>
+						<td>
+							<input type="text" name="alternative0_text" class="input-xlarge" value="Todos los días" />
+						</td>
+						<td>
+							<input type="checkbox" name="correct_alternative0" value="True" /> 
+						</td>
+						<td>
+							<input type="text" name="feedback0_text" class="input-xlarge" />
+						</td>
+					</tr>	
+					<tr>
+						<td>
+							2
+						</td>
+						<td>
+							<input type="text" name="alternative1_text" class="input-xlarge" value="4-5 veces a la semana" />
+						</td>
+						<td>
+							<input type="checkbox" name="correct_alternative1" value="True" /> 
+						</td>
+						<td>
+							<input type="text" name="feedback1_text" class="input-xlarge" />
+						</td>
+					</tr>	
+					<tr>
+						<td>
+							3
+						</td>
+						<td>
+							<input type="text" name="alternative2_text" class="input-xlarge" value="2-3 veces a la semana" />
+						</td> 
+						<td>
+							<input type="checkbox" name="correct_alternative2" value="True" /> 
+						</td>
+						<td>
+							<input type="text" name="feedback2_text" class="input-xlarge" />
+						</td>
+					</tr>	
+					<tr>
+						<td>
+							4
+						</td>
+						<td>
+							<input type="text" name="alternative3_text" class="input-xlarge" value="Casi nunca" />
+						</td>
+						<td>
+							<input type="checkbox" name="correct_alternative3" value="True" /> 
+						</td>
+						<td>
+							<input type="text" name="feedback3_text" class="input-xlarge" />
+						</td>
+					</tr>	
+				</tbody>
+			</table>
+			<div class="form-actions">
+				
+				<input type="reset" class="btn btn-small" value="Limpiar" />
+				<input type="submit" value="Crear" class="btn btn-large btn-primary" class="pull-right" />
+			</div>
+			
+		</form>
+	</div>
+</div>
+
+{% endblock content %}
+
+

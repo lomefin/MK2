@@ -34,6 +34,8 @@ handlers:
 - url: /support/contact/.*
   script: modules/support/contact.py
   
+- url: /signup
+  script: modules/login/login.py  
 - url: /login
   script: modules/login/login.py
 
@@ -71,3 +73,5 @@ skip_files:
 error_handlers:
   - file: error.html
 
+builtins:
+- remote_api: on

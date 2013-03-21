@@ -1,5 +1,5 @@
 ﻿<!doctype html>  
-<html lang="es" manifestold="/cache.manifest.not">  
+<html lang="es" manifestold="/cache.manifest.not2">  
 <head>
 	
 	<title>Me Kuido - {% block title %}Bienvenido{% endblock title%}</title>
@@ -25,9 +25,10 @@
 			<div class="span6 menuContainer">
 				<div class="row-fluid">
 					{% if not hide_menu %}
-					<div id="" class="menuContainerElement food_log_menu"><div><a href="/food_log/">¿Qué Comí?</a></div></div>
+					<div id="" class="menuContainerElement food_log_menu"><div><a href="/food_log/">¿Qué comí?</a></div></div>
+					<div id="" class="menuContainerElement activity_menu"><div><a href="/activity/">¿Qué hice?</a></div></div>
 					<div id="" class="menuContainerElement trivia_menu"><div><a href="/trivia/">Trivia</a></div></div>
-					<div id="" class="menuContainerElement todo_menu"><div><a href="/todo/">Mis Metas</a></div></div>
+					<div id="" class="menuContainerElement todo_menu"><div><a href="/todo/">Mis metas</a></div></div>
 					<div id="" class="menuContainerElement more_menu"><div><a href="/static/others">Ayudas</a></div></div>
 					{% endif %}
 				</div>
@@ -61,20 +62,25 @@
 			</div>
 			<div class="span1">
 				<div class="avatar-spacer" ></div>
-				<div class="avatar">
 				{%block avatar%}
 					{% if bubble_data %}
-	                <div class="dialog-placeholder"
+
+				
+	                <div class="avatar"
 	                    rel="popover"
 	                    data-animation="true"
 	                    data-placement="left"
-	                    data-delay="{show: 300}"
-	                    data-content="{{bubble_data}}"> 
-	                </div>
+	                    data-delay="{show: 2000, hide: 8000}"
+	                    data-content="{{bubble_data}}"
+	                    id="bubble_data"> 
+	                
+	                {% else %}
+	                <div class="avatar">
 	                {% endif %}
 	                {% if kid_data %}
 	                <div class="{{kid_data}} half" ></div>
 	                {% endif %}
+	            	</div>
 				{%endblock avatar%}
 				</div>
 			</div>
@@ -115,6 +121,11 @@
 	<!--End of Time selector requirements-->
 	{% if bubble_data%}
 	<!--script type="text/javascript" src="/js/closeBubble.js"></script-->
+	<script>
+	$(function(){
+		$('#bubble_data').popover('show');
+	});
+	</script>
 	{% endif %}
 	<!--Custom Javascript Code Needed-->
 	{% block js_requires %}{% endblock %}

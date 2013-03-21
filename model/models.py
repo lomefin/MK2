@@ -94,9 +94,33 @@ class MKTriviaAnswer(MKModel):
 	answered_by = db.ReferenceProperty(MKStudent,collection_name="trivia_answers")
 	question = db.ReferenceProperty(MKTriviaQuestion, collection_name="answers")
 	answered = db.ReferenceProperty(MKTriviaPossibleAnswer, collection_name="responses")
+
+class MKActivity(MKModel):
+	name		= db.StringProperty()
+	default_general_feedback = db.StringProperty()
+	default_correct_feedback  = db.StringProperty()
+	default_wrong_feedback  = db.StringProperty()
+	
+class MKActivityQuestion(MKModel):
+	created_by = db.ReferenceProperty(MKAccount)
+	activity = db.ReferenceProperty(MKActivity,collection_name='questions')
+	question_text = db.StringProperty()
+	general_feedback = db.StringProperty()
+	phrase = db.StringProperty()
+	last_displayed = db.DateTimeProperty()
+
+class MKActivityPossibleAnswer(MKModel):
+	possible_answer_text = db.StringProperty()
+	feedback_text = db.StringProperty()
+	is_correct = db.BooleanProperty()
+	question = db.ReferenceProperty(MKActivityQuestion,collection_name='possible_answers')
+	
+class MKActivityAnswer(MKModel):
+	answered_by = db.ReferenceProperty(MKStudent,collection_name="activity_answers")
+	question = db.ReferenceProperty(MKActivityQuestion, collection_name="answers")
+	answered = db.ReferenceProperty(MKActivityPossibleAnswer, collection_name="responses")
 	
 class MKFoodLogElement(MKModel):
-	created_by = db.ReferenceProperty(MKAccount)
 	group = db.IntegerProperty()
 	name = db.StringProperty()
 	protein_calories = db.IntegerProperty()

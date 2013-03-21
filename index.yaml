@@ -18,6 +18,11 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: MKActivityQuestion
+  properties:
+  - name: activity
+  - name: last_displayed
+
 - kind: MKClass
   properties:
   - name: school

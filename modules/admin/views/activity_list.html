@@ -1,0 +1,95 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+<div class="row">
+	<h1>{{activity.name}} <small> Preguntas</small></h1>
+</div>
+<div class="row">
+		<div class="span6">
+			<a href="#all_details" class="btn btn-medium" id="show_all">Ver todos los detalles</a>
+			<a href="/admin/activity/{{activity.key.id}}/addQuestion" class="btn btn-medium btn-success" id="show_all">Agregar pregunta</a>
+		</div>
+		<div class="span1 offset5">
+			<a href="/admin/activity/" class="btn btn-medium btn-info">Volver</a>
+		</div>
+	</div>
+<section id="activity_information" style="display:none" >
+	<div class="row" >
+		<h2>Información Feedback</h2>
+		<div class="span10">
+			<dl class="dl-horizontal">
+				<dt>General</dt>
+				<dd>{{activity.default_general_feedback}}</dd>
+				<dt>Pregunta correcta</dt>
+				<dd>{{activity.default_correct_feedback}}</dd>
+				<dt>Pregunta incorrecta</dt>
+				<dd>{{activity.default_wrong_feedback}}</dd>
+			</dl>
+		</div>
+	</div>
+</section>
+{% if questions %}
+<section id="questions">
+	<div class="row">
+		<h2>Preguntas</h2>
+	</div>
+{% for question in questions %}
+	<div class="row">
+		<div class="span10">
+			<p class="lead">&iquest;{{question.question_text}}?</p>
+		</div>
+		<div class="span2">
+			<a href="#question_{{question.key.id}}" class="btn btn-small detail-shower" id="show_{{question.key.id}}">Detalles</a>
+			<a href="/admin/activity/questions/{{question.key.id}}/remove" class="btn btn-small btn-danger">Eliminar</a>
+		</div>
+	</div>
+	<div class="row" id="row_{{question.key.id}}" style="display:none">
+		<div class="span6">
+			<a name="question_{{question.key.id}}"></a>
+			<p>Frase: {{question.phrase}}</p>
+			<p>Feedback: {{question.general_feedback}}</p>
+		</div>
+		<div class="span6">
+			<p> Respuestas posibles:</p>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Posible respuesta</th>
+						<th>Correcta?</th>
+						<th>Feedback</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for answer in question.possible_answers %}
+					<tr>
+						<td>{{answer.possible_answer_text}}</td>
+						<td>{%if answer.is_correct %}<i class="icon-ok"></i>{%endif%}</td>
+						<td>{{answer.feedback_text}}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endfor %}
+</section>
+{% else %}
+	<p>No hay preguntas de activity</p>
+{% endif %}
+
+{% endblock content %}
+
+{% block js_activities %}
+<script type="text/javascript">
+	$(function(){
+		$('.detail-shower').click(function(){
+			id = this.id.split('_')[1];
+			$('#row_'+id).show('fast');
+			$(this).hide('fast');
+		});
+		$('#show_all').click(function(){
+			$('.detail-shower').click();
+			$('#activity_information').show('slow');
+		});
+	});
+</script>
+{% endblock %}

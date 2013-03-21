@@ -89,7 +89,15 @@ class CalorieAnalysis:
 		output_message = str((self.prot*100 ,self.fat*100,self.carb*100,self.total))
 		output_message = '¡ Muy bien, la distribucion de nutrientes de tu dieta esta dentro de los rangos normales!'
 		message_category = 'ok'
-		if (self.prot 	> 0.12 	and self.prot 	< 	0.15 	and
+
+		if (self.total * 1.2 < self.minimal_required_calories):
+			output_message = '¡Cuidado! Estas consumiendo muy pocas calorías'
+			message_category = 'warning'
+		elif (self.total * 0.8 > self.minimal_required_calories):
+			output_message = '¡Cuidado! Estas consumiendo más calorías de las necesarias'
+			message_category = 'warning'
+
+		elif (self.prot 	> 0.12 	and self.prot 	< 	0.15 	and
 			self.fat 	> 0.2 	and self.fat 	<	0.3 	and
 			self.carb	> 0.55	and self.carb 	<	0.68):
 			output_message = '¡ Muy bien, la distribucion de nutrientes de tu dieta esta dentro de los rangos normales!'
@@ -152,6 +160,9 @@ class CalorieAnalysis:
 			self.carb	>=	0.68):
 			output_message = '¡Cuidado, la distribucion de nutrientes de tu dieta no es la adecuada para tu salud!  Recuerda que el exceso de grasas y carbohidratos es perjudicial para nuestro organismo.  Recuerda que las proteínas son esenciales para la mantención y reparacion de tejidos de tu cuerpo '
 			message_category = 'not'
+		else:
+			output_message = 'Tu distribución de nutrientes parece estar un poco extraña, trata de buscar una dieta más equilibrada'
+			message_category = 'warning'
 
 		analysis = {'message': output_message, 'message_category' : message_category , 'check': 'check'}
 		return analysis

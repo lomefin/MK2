@@ -13,8 +13,12 @@
 .dialog-placeholder
 {
 	position: absolute;
-	top: 10%;
-	left: 40%;
+	top: 20%;
+	left: 60%;
+}
+.popover.left
+{
+	margin-top:50px;
 }
 .femenino-blue-ok, .femenino-blue-lean, .femenino-blue-normal, .femenino-blue-stand, .femenino-orange-lean, .femenino-orange-normal, .femenino-orange-stand, .femenino-orange-ok, .femenino-yellow-lean, .femenino-yellow-normal, .femenino-yellow-stand, .femenino-yellow-ok, .masculino-blue-lean, .masculino-blue-normal, .masculino-blue-ok, .masculino-blue-stand, .masculino-red-lean, .masculino-red-normal, .masculino-red-ok, .masculino-red-stand, .masculino-yellow-lean, .masculino-yellow-normal, .masculino-yellow-ok, .masculino-yellow-stand{
 	background: url(/img/sprites.png) no-repeat;

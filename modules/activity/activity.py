@@ -32,14 +32,14 @@ from time import strptime
 import logging
 from model.models import *
 
-class TriviaIndexHandler(mkhandler.MKHandler):
+class ActivityIndexHandler(mkhandler.MKHandler):
 	
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
 	
 	def next_question(self):
-		selected_question = MKTrivia.all().get().questions.order('last_displayed').get()
+		selected_question = MKActivity.all().get().questions.order('last_displayed').get()
 		if not selected_question:
 			return None
 		selected_question.last_displayed = datetime.datetime.now()
@@ -51,11 +51,9 @@ class TriviaIndexHandler(mkhandler.MKHandler):
 
 		values = {}
 		trivias_answered = 1
-		if(self.session and self.session.has_key("TRIVIAS_ANSWERED")):
-			trivias_answered = self.session["TRIVIAS_ANSWERED"]
-		self.session["TRIVIAS_ANSWERED"] = trivias_answered + 1
-		if trivias_answered % 5 == 0:
-			self.redirect('/todo/fast')
+		if(self.session and self.session.has_key("ACTIVITIES_ANSWERED")):
+			trivias_answered = self.session["ACTIVITIES_ANSWERED"]
+		self.session["ACTIVITIES_ANSWERED"] = trivias_answered + 1
 
 		next_question = self.next_question()
 		
@@ -74,7 +72,7 @@ class TriviaIndexHandler(mkhandler.MKHandler):
 		self.render('index', template_values=values)
 		
 
-class TriviaAnswerHandler(mkhandler.MKHandler):
+class ActivityAnswerHandler(mkhandler.MKHandler):
 	
 	def base_directory(self):
 		return os.path.dirname(__file__)
@@ -83,9 +81,9 @@ class TriviaAnswerHandler(mkhandler.MKHandler):
 		
 		question_code = self.request.get('triviaQuestion')
 		answer_code = self.request.get('triviaAnswer')
-		answer = MKTriviaAnswer()
-		question = MKTriviaQuestion.get_by_id(int(question_code))
-		question_answer = MKTriviaPossibleAnswer.get_by_id(int(answer_code))
+		answer = MKActivityAnswer()
+		question = MKActivityQuestion.get_by_id(int(question_code))
+		question_answer = MKActivityPossibleAnswer.get_by_id(int(answer_code))
 		answer.answered_by = self.current_student_user
 		answer.question = question
 		answer.answered = question_answer
@@ -120,8 +118,8 @@ class TriviaAnswerHandler(mkhandler.MKHandler):
 		self.render('answer', template_values=values)
 
 def main():
-  application = webapp.WSGIApplication([('/trivia/answer/', TriviaAnswerHandler),
-										('/trivia/*', TriviaIndexHandler)],
+  application = webapp.WSGIApplication([('/activity/answer/', ActivityAnswerHandler),
+										('/activity/*', ActivityIndexHandler)],
                                        debug=True)
   util.run_wsgi_app(application)
 

@@ -1,0 +1,44 @@
+{% extends "../../../templates/login_template.html" %}
+{% block js_activities %}
+
+<script type="text/javascript">
+	window.addEvent('domready',function()
+		{
+			new Form.Validator.Inline('loginForm');
+		});
+</script>
+{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="span4 offset4">
+		<form method="post"  id="loginForm" class="formHorizontal">
+			<div style="background-color: rgba(250,250,250,0.6); padding: 40px; border-radius: 12px;">
+				<img src="/img/logo_large.png" style="width: 300px; margin-bottom: 20px;"/>
+				<small>Felicitaciones! Que bueno que quieres comenzar a usar MeKuido! Solamente necesitamos tu nombre, tu apellido y tu correo electrónico. Tu clave te va a llegar por mail!</small>
+				<div class="control-group">
+					<div class="controls">
+						<input type="text" name="student_surname"  id="student_name" placeholder="Nombre" />
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<input type="text" name="student_surname"  id="student_surname" placeholder="Apellido" />
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<input type="text" name="student_email"  id="student_email" placeholder="Email" />
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<input type="submit" value="Inscríbete" class="btn btn-primary btn-large" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock content %}
+
