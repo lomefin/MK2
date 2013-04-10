@@ -42,7 +42,7 @@
 	clear:both;
 	border: 2px solid black;
 	border-radius: 8px;
-	font-size: 12pt;
+	font-size: 15pt;
 	margin: 150px 0px 0 0;
 	padding: 10px 5px;
 	line-height: 150%;
@@ -55,8 +55,8 @@
 }
 #answer
 {
-	font-size: 30pt;
+	font-size: 24pt;
 	padding: 60px 5px 0px;
 	text-align:center;
-	line-height: 40pt;
+	line-height: 42pt;
 }

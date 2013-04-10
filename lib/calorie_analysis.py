@@ -161,7 +161,7 @@ class CalorieAnalysis:
 			output_message = '¡Cuidado, la distribucion de nutrientes de tu dieta no es la adecuada para tu salud!  Recuerda que el exceso de grasas y carbohidratos es perjudicial para nuestro organismo.  Recuerda que las proteínas son esenciales para la mantención y reparacion de tejidos de tu cuerpo '
 			message_category = 'not'
 		else:
-			output_message = 'Tu distribución de nutrientes parece estar un poco extraña, trata de buscar una dieta más equilibrada'
+			output_message = 'La distribución no es adecuada, consulta a tus padres o profesores.'
 			message_category = 'warning'
 
 		analysis = {'message': output_message, 'message_category' : message_category , 'check': 'check'}

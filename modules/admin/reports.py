@@ -98,16 +98,7 @@ class GeneralReportHandler(mkhandler.MKGAEHandler):
 		
 		values = {'answered_trivia_questions':answered_trivia_questions}
 		
-		query= db.Query(MKAccess,keys_only=True)
-		while True:
-		  count = query.count()
-		  accesses = accesses + count
-		  if count < 1000:
-		    break
-		  cursor = query.cursor()
-		  query.with_cursor(cursor)
-		values['accesses'] = accesses
-		
+			
 		query= db.Query(MKDailyFoodLog,keys_only=True)
 		while True:
 		  count = query.count()

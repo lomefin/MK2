@@ -196,8 +196,6 @@ class TeacherAdminHandler(mkhandler.MKHandler):
 				food_logs = food_logs + food_log_query.count()
 				trivia_query = db.GqlQuery("SELECT * FROM MKTriviaAnswer WHERE creation_date > :1 and creation_date < :2 and answered_by = :3",date_from,date_to,s)
 				trivias = trivias + trivia_query.count()
-				accesses_query = db.GqlQuery("SELECT * FROM MKAccess WHERE creation_date > :1 and creation_date < :2 and student = :3",date_from,date_to,s)
-				logins = logins + accesses_query.count()
 				todo_query = db.GqlQuery("SELECT * FROM MKGoal WHERE creation_date > :1 and creation_date < :2 and created_by = :3",date_from,date_to,s.student_account)
 				todos = todos+ todo_query.count()
 			
@@ -205,7 +203,6 @@ class TeacherAdminHandler(mkhandler.MKHandler):
 		      values = {
 			      'class':c,
 			      'students':students,
-			      'logins':logins,
 			      'todos' : todos,
 			      'food_logs' : food_logs,
 			      'trivias' : trivias,

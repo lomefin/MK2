@@ -29,13 +29,13 @@
 	</div>
 </div>
 
-<div class="row-fluid timed_show" id="question_drama" style="display:none" data-delay="3000">
-	<div class="span4 offset5">
-		<h2>&hellip;&nbsp;está &hellip;</h2>
+<div class="row-fluid timed_show" id="question_drama" style="display:none" data-delay="2500">
+	<div class="span6 offset3">
+		<h2>...(Redoble de tambores)...</h2>
 	</div>
 </div>
 
-<div class="row-fluid timed_show" id="answerContainer" style="display:none" data-delay="9000"> 
+<div class="row-fluid timed_show" id="answerContainer" style="display:none" data-delay="7000"> 
 	<div class="span7 offset1">
 		<h1 id="answer" class="result-feedback">{{result_feedback}}</h1>
 		<div id="feedback">{{ feedback }}</div>
@@ -45,7 +45,7 @@
 	</div>
 </div>
 
-<div class="row-fluid timed_show" style="display:none" data-delay="16500">
+<div class="row-fluid timed_show" style="display:none" data-delay="12500">
 	<div class="span4 offset4">
 		<a href="/trivia/" class="btn btn-block btn-primary btn-large" id="trivia_continue" >Seguir</a>
 	</div>
@@ -55,6 +55,7 @@
 {% endblock content %}
 {% block avatar%}
 	{% if kid_face %}
+	{{ block.super }}
 	{% else %}
 	{{ block.super }}
 	{%endif%}

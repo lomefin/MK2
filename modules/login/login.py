@@ -176,7 +176,6 @@ class DefaultHandler(mkhandler.MKHandler):
 		if self.current_student_user:
 			self.session["current_student_user"] = self.current_student_user
 			self.session["current_student_user"].put()
-			MKAccess(student=self.current_student_user).put()
 			time.sleep(1)
 			#Check if it has started
 			if self.current_student_user.has_started:
