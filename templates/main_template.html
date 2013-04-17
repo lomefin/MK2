@@ -63,25 +63,23 @@
 			<div class="span1">
 				<div class="avatar-spacer" ></div>
 				{%block avatar%}
+					<div class="avatar {% if bubble_data %}timed_show{%endif%}" 
 					{% if bubble_data %}
-
-				
-	                <div class="avatar timed_show"
-
-	                    rel="popover"
-	                    data-animation="true"
-	                    data-placement="left"
-	                    data-delay="12000"
-	                    data-content="{{bubble_data}}"
-	                    id="bubble_data"> 
-	                
-	                {% else %}
-	                <div class="avatar">
+						rel="popover"
+            data-animation="true"
+            data-placement="left"
+            data-delay="12000"
+            data-content="{{bubble_data}}"
+            id="bubble_data"
+            style="visibility:hidden"
+          {%else%}
+          	style="visibility:hidden"
+        	{%endif%}
+					>
+					{% if kid_data %}
+	                <div class="{{kid_data}} half timed_show" data-delay="12500"   ></div>
 	                {% endif %}
-	                {% if kid_data %}
-	                <div class="{{kid_data}} half" ></div>
-	                {% endif %}
-	            	</div>
+					</div>
 				{%endblock avatar%}
 				</div>
 			</div>
@@ -124,7 +122,9 @@
 	<!--script type="text/javascript" src="/js/closeBubble.js"></script-->
 	<script>
 	$(function(){
-		$('#bubble_data').popover('show');
+		setTimeout(function(){$('#bubble_data').css('visibility','visible');},10200);
+		setTimeout(function(){$('#bubble_data').popover('show');},12000);
+		setTimeout(function(){$('#kid_face').hide(500);},9700);
 	});
 	</script>
 	{% endif %}

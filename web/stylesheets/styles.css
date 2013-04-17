@@ -5,7 +5,7 @@
 	background-repeat: no-repeat;
 	background-position: top center;
 	text-align:center;
-	font-size: 14px;
+	font-size: 14pt;
 }
 div
 {
@@ -386,8 +386,8 @@ input[type="submit"]:hover, button[type="button"] a:hover
 .result-feedback 
 { 
 	font-family: 'Bangers', cursive;
-	font-size: 48pt;
-	letter-spacing: 4px;
+	font-size: 32pt;
+	letter-spacing: 2px;
 	line-height: 40pt;
 }
 
@@ -429,4 +429,8 @@ input[type="submit"]:hover, button[type="button"] a:hover
 .modal.fade.in
 {
 	top: 30%;
+}
+.popover.fade.in.left
+{
+	/*visibility: hidden;*/
 }
