@@ -60,16 +60,15 @@
 		var food_source = [{% for food_item in food_items %}"{{food_item.name}}" {%if forloop.last%}{%else%},{%endif%}{%endfor%}];
 		var food_selected = function(item, typeahead)
 		{
-			$('div.food_selector_row').hide()
-			$('#row_'+item).show('slow')
-		}
-		$('#food_selector').change(function()
-		{
-			selector  = $(this)
-			looking_for = selector.val()
+			item = item.trim().toLowerCase().replace(" ","-").replace("á","a").replace("é","e").replace("í","i").replace("ó","o").replace("ú","u");
+			$('div.food_selector_row').hide();
+			$('#row_'+item).show('slow');
+			var looking_for = item;
+			console.log("looking_for ", looking_for)
 			if (looking_for == "") return;
-			if($.inArray(looking_for,food_source) == -1)
+			if($('#row_'+item).length == 0)
 			{
+				console.log("not in array")
 				selector.val("");
 				$('div.food_selector_row').hide();
 				$("#missingFoodName").text(looking_for)
@@ -82,6 +81,13 @@
 				$("#missing_food_alert").show('medium');
 
 			}
+		}
+		$('#food_selector').change(function()
+		{
+			console.log("Food selector:change")
+			selector  = $(this)
+			looking_for = selector.val()
+			
 			
 		});
 		$('#food_selector').typeahead(
@@ -117,7 +123,7 @@
 				data-items="10"		/>
 					<div class="row-fluid" style="min-height:60px">
 						{% for food_item in food_items %}
-						<div id="row_{{food_item.name}}"  style="display:none" class="food_selector_row">
+						<div id="row_{{food_item.name|slugify}}"  style="display:none" class="food_selector_row">
 							<div class="row-fluid">
 								<p>&iquest; Cuánto en {{food_item.unit}} de {{food_item.name}} en <a href="#" rel="tooltip" data-placement="top" title="Considera desayuno, almuerzo, cena y colación!">total</a> comiste ayer?</p>
 							</div>
