@@ -196,8 +196,8 @@ div
 {
 	background-color: #A5FF8C;
 	border: 2px solid black;
-	-webkit-transform: rotate(10deg); 
-	-moz-transform: rotate(10deg);	
+	-webkit-transform: rotate(-10deg); 
+	-moz-transform: rotate(-10deg);	
 }
 .activity_menu
 {
@@ -208,15 +208,15 @@ div
 }
 .todo_menu
 {
-	-webkit-transform: rotate(-12deg); 
-	-moz-transform: rotate(-12deg);	
+	-webkit-transform: rotate(12deg); 
+	-moz-transform: rotate(12deg);	
 	background-color: #FFC677;
 	border: 2px solid black;
 }
 .more_menu
 {
-	-webkit-transform: rotate(8deg); 
-	-moz-transform: rotate(8deg);	
+	-webkit-transform: rotate(-8deg); 
+	-moz-transform: rotate(-8deg);	
 	background-color: yellow;
 	border: 2px solid black;
 }
