@@ -51,9 +51,6 @@ class ActivityIndexHandler(mkhandler.MKHandler):
 
 		values = {}
 		trivias_answered = 1
-		if(self.session and self.session.has_key("ACTIVITIES_ANSWERED")):
-			trivias_answered = self.session["ACTIVITIES_ANSWERED"]
-		self.session["ACTIVITIES_ANSWERED"] = trivias_answered + 1
 
 		next_question = self.next_question()
 		

@@ -57,6 +57,9 @@ class TriviaIndexHandler(mkhandler.MKHandler):
 		if trivias_answered % 5 == 0:
 			self.redirect('/todo/fast')
 
+		if trivias_answered > 15 and trivias_answered % 8 == 0:
+			self.redirect('/activity/')
+
 		next_question = self.next_question()
 		
 		flash = ''
